@@ -13,13 +13,7 @@ public class Ex03_Artigos {
 		private int stock;
 		private int minStock;
 
-		/**
-		 * @param cODIGO
-		 * @param description
-		 * @param pVP
-		 * @param stock
-		 * @param minStock
-		 */
+		
 		public Artigos(int cODIGO, String description, double pVP, int stock, int minStock) {
 			CODIGO = cODIGO;
 			this.description = description;
