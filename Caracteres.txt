@@ -1,0 +1,1 @@
+Isto é unha proba de FileWriter método write()*
