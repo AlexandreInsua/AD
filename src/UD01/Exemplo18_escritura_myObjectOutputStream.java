@@ -12,6 +12,7 @@ import java.io.ObjectOutputStream;
 
 /*
  * Xestiona un ficheiro de clientes.
+ * Non hai problema de cabeceiras porque non está activo o parámetro main.
  */
 
 public class Exemplo18_escritura_myObjectOutputStream {
@@ -21,7 +22,6 @@ public class Exemplo18_escritura_myObjectOutputStream {
 		do {
 			System.out.println("1.- Inserir rexistros.");
 			System.out.println("2.- Ler rexistros.");
-
 			System.out.println("3.- Sair.");
 			System.out.println("Elegir opcion: ");
 			opcion = Integer.parseInt(br.readLine());

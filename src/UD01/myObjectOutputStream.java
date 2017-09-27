@@ -14,6 +14,5 @@ public class myObjectOutputStream extends ObjectOutputStream {
 		super();
 	}
 
-	public void write(int arg0) throws IOException {
-	}
+	
 }
