@@ -7,19 +7,19 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.io.Serializable;
 import java.util.Scanner;
 
-public class Ex03_Artigos {
+public class Ex03_Articles {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		File f = new File("Artigos.dat");
-		File ids = new File("articlesCodes.dat");
-		FileOutputStream oos = null;
+		new File("articlesCodes.dat");
+		runMenu(sc, f);
+	}
 
+	private static void runMenu(Scanner sc, File f) {
 		System.out.println("Introduza a opción:\n1.- Inserir datos\n2.- Listar datos\n3.- Saír");
 		int option = Integer.parseInt(sc.nextLine());
 		while (option != 3) {
@@ -32,11 +32,30 @@ public class Ex03_Artigos {
 				}
 			}
 			if (option == 2) {
-				readArticles(f);
+				readFile(f);
 			}
 			System.out.println("Introduza a opción:\n1.- Inserir datos\n2.- Listar datos\n3.- Saír");
 			option = Integer.parseInt(sc.nextLine());
 		}
+	}
+
+	private static Article askForObject(Scanner sc) {
+		System.out.println("Introduza os datos do Obxecto: ");
+		System.out.println("Código: ");
+		int code = Integer.parseInt(sc.nextLine());
+		// TODO implementar validación código
+		System.out.println("Descripción: ");
+		String desc = sc.nextLine();
+		System.out.println("PVP: ");
+		double pvp = Double.parseDouble(sc.nextLine());
+		System.out.println("Existencias: ");
+		int stck = Integer.parseInt(sc.nextLine());
+		System.out.println("Existencias mínimas: ");
+		int minStck = Integer.parseInt(sc.nextLine());
+
+		Article a = new Article(code, desc, pvp, stck, minStck);
+		return a;
+
 	}
 
 	private static void insertDataNewFile(Scanner sc, File f) {
@@ -45,63 +64,63 @@ public class Ex03_Artigos {
 		try {
 			fos = new FileOutputStream(f);
 			oos = new ObjectOutputStream(fos);
-
-			System.out.println("Introduza os datos do Obxecto: ");
-			System.out.println("Código: ");
-			int code = Integer.parseInt(sc.nextLine());
-			// TODO implementar validación código
-			System.out.println("Descripción: ");
-			String desc = sc.nextLine();
-			System.out.println("PVP: ");
-			double pvp = Double.parseDouble(sc.nextLine());
-			System.out.println("Existencias: ");
-			int stck = Integer.parseInt(sc.nextLine());
-			System.out.println("Existencias mínimas: ");
-			int minStck = Integer.parseInt(sc.nextLine());
-
-			Article a = new Article(code, desc, pvp, stck, minStck);
-
-			oos.writeObject(a);
+			oos.writeObject(askForObject(sc));
 			oos.close();
 
 		} catch (FileNotFoundException e) {
-			System.out.println("Error: ficheir non encontrado.");
+			System.out.println("Error: ficheiro non encontrado.");
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Error: fallo de lectura/escritura no ficheiro");
+		}
+	}
+
+	private static void insertData(Scanner sc, File f) {
+		FileOutputStream fos = null;
+		MyObjectOutputStream moos = null;
+		try {
+			fos = new FileOutputStream(f, true);
+			moos = new MyObjectOutputStream(fos);
+			moos.writeObject(askForObject(sc));
+			moos.close();
+
+		} catch (FileNotFoundException e) {
+			System.out.println("Error: ficheiro non encontrado.");
 			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("Error: fallo de lectura/escritura no ficheiro");
 		}
 
 	}
 
-	private static void insertData(Scanner sc, File f) {
-		System.out.println("inserindo datos en ficheiro existente");
-
-	}
-
-	private static void readArticles(File f) {
+	private static void readFile(File f) {
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
 
 		try {
 			fis = new FileInputStream(f);
 			ois = new ObjectInputStream(fis);
+			System.out.println("Código\tDescripción\tPrezo\tExistencias\tExistencias mínimas");
+			while (true) {
+				Article a = (Article) ois.readObject();
+				System.out.println(a.getCODIGO() + "\t " + a.getDescription() + "\t " + a.getPVP() + "\t "
+						+ a.getStock() + "\t " + a.getMinStock());
 
-			Article a = (Article) ois.readObject();
-			System.out.println(a.getCODIGO() + "\t " + a.getDescription() + "\t " + a.getPVP() + "\t " + a.getStock()
-					+ "\t " + a.getMinStock());
+			}
 
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (ClassNotFoundException cnf) {
+			System.out.println("Error: fallo na clase");
+		} catch (FileNotFoundException fnf) {
+			System.out.println("Error: ficheiro non encontrado.");
+		} catch (IOException ioe) {
+			System.out.println("Error: fallo na lectura/escritura");
+		} finally {
+			try {
+				ois.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-
 	}
 }
 

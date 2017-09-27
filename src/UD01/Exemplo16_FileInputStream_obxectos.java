@@ -15,7 +15,7 @@ public class Exemplo16_FileInputStream_obxectos {
 			os = new ObjectInputStream(fs);
 			while (true) { // lectura del fichero
 				// os debe realizar un castingal tipo original
-				Persona p = (Persona) os.readObject();
+				Persoa p = (Persoa) os.readObject();
 				System.out.println(p.getNombre() + "\t" + p.getEdad());
 			}
 		} catch (ClassNotFoundException cnf) {

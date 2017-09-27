@@ -13,9 +13,9 @@ public class Exemplo15_FileOutputStream_obxectos {
 		try {
 			fs = new FileOutputStream("Personas.txt",true);
 			os = new ObjectOutputStream(fs);
-			Persona p = new Persona("Marta", 32);
+			Persoa p = new Persoa("Marta", 32);
 			os.writeObject(p);
-			os.writeObject(new Persona("Ana", 27));
+			os.writeObject(new Persoa("Ana", 27));
 						
 		} catch (FileNotFoundException fne) {
 			System.out.println("Error en el fichero");
