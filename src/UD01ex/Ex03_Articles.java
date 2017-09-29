@@ -1,5 +1,7 @@
 package UD01ex;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -15,7 +17,7 @@ public class Ex03_Articles {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		File f = new File("Artigos.dat");
-		new File("articlesCodes.dat");
+		File fcods = new File("articlesCodes.dat");
 		runMenu(sc, f);
 	}
 
@@ -43,7 +45,13 @@ public class Ex03_Articles {
 		System.out.println("Introduza os datos do Obxecto: ");
 		System.out.println("Código: ");
 		int code = Integer.parseInt(sc.nextLine());
+		validateCode(code);
 		// TODO implementar validación código
+		// se existe o ficheiro de código,
+		// ler os códigos
+		// verifica se code = saved
+		// se é igual volve a pedilo
+		// se é diferente, continúa
 		System.out.println("Descripción: ");
 		String desc = sc.nextLine();
 		System.out.println("PVP: ");
@@ -100,7 +108,7 @@ public class Ex03_Articles {
 		try {
 			fis = new FileInputStream(f);
 			ois = new ObjectInputStream(fis);
-			System.out.println("Código\tDescripción\tPrezo\tExistencias\tExistencias mínimas");
+			System.out.println("Código\tDescrp.\tPrezo\tExists.\tExists. míns.");
 			while (true) {
 				Article a = (Article) ois.readObject();
 				System.out.println(a.getCODIGO() + "\t " + a.getDescription() + "\t " + a.getPVP() + "\t "
@@ -120,6 +128,63 @@ public class Ex03_Articles {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+
+	private static void validateCode(int code) {
+		File codesFile = (new File("articlesCodes.dat"));
+		FileOutputStream fos = null;
+		DataOutputStream dos = null;
+		FileInputStream fis = null;
+		DataInputStream dis = null;
+		int newCode = code;
+
+		if (codesFile.exists()) {
+			try {
+				fis = new FileInputStream(codesFile);
+				dis = new DataInputStream(fis);
+
+				while (true) {
+					int oldCode = dis.read();
+					if (newCode == oldCode) {
+						System.out.println("Codigo repetido");
+					} else {
+						// escribir o código
+					}
+				}
+			} catch (IOException ioe) {
+				System.out.println("Error: fallo na lectura/escritura");
+			} finally {
+				try {
+					dis.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+		} else {
+			try {
+				codesFile.createNewFile();
+				fos = new FileOutputStream(codesFile);
+				dos = new DataOutputStream(fos);
+				System.out.println("Creando rexistro de código");
+				
+				dos.writeInt(code);
+
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			} finally {
+				try {
+					dos.close();
+					fos.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+
 		}
 	}
 }

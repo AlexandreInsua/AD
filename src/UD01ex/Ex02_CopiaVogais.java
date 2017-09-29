@@ -22,12 +22,14 @@ public class Ex02_CopiaVogais {
 			int caracter;
 
 			while ((caracter = br.read()) != -1) {
+				System.out.println("lendo caracter...");
 
 				if ((caracter == 'a') || (caracter == 'A') || (caracter == 'e') || (caracter == 'E')
 						|| (caracter == 'i') || (caracter == 'I') || (caracter == 'o') || (caracter == 'O')
 						|| (caracter == 'u') || (caracter == 'U')) {
 
-					bw.write((char)caracter);
+					bw.write((char) caracter);
+					System.out.println("vogal escrita");
 				}
 			}
 		}
