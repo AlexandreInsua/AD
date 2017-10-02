@@ -1,7 +1,9 @@
 package UD01ex;
 
 import java.io.DataInputStream;
+import java.io.DataOutput;
 import java.io.DataOutputStream;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -28,7 +30,6 @@ public class Ex03_Articles {
 			if (option == 1) {
 				if (f.exists()) {
 					insertData(sc, f);
-
 				} else {
 					insertDataNewFile(sc, f);
 				}
@@ -42,28 +43,26 @@ public class Ex03_Articles {
 	}
 
 	private static Article askForObject(Scanner sc) {
+		Article a = null;
 		System.out.println("Introduza os datos do Obxecto: ");
 		System.out.println("Código: ");
 		int code = Integer.parseInt(sc.nextLine());
-		validateCode(code);
-		// TODO implementar validación código
-		// se existe o ficheiro de código,
-		// ler os códigos
-		// verifica se code = saved
-		// se é igual volve a pedilo
-		// se é diferente, continúa
-		System.out.println("Descripción: ");
-		String desc = sc.nextLine();
-		System.out.println("PVP: ");
-		double pvp = Double.parseDouble(sc.nextLine());
-		System.out.println("Existencias: ");
-		int stck = Integer.parseInt(sc.nextLine());
-		System.out.println("Existencias mínimas: ");
-		int minStck = Integer.parseInt(sc.nextLine());
+		if (validateCode(code)) {
+			System.out.println("Código: ");
+			code = Integer.parseInt(sc.nextLine());
+			System.out.println("Descripción: ");
+			String desc = sc.nextLine();
+			System.out.println("PVP: ");
+			double pvp = Double.parseDouble(sc.nextLine());
+			System.out.println("Existencias: ");
+			int stck = Integer.parseInt(sc.nextLine());
+			System.out.println("Existencias mínimas: ");
+			int minStck = Integer.parseInt(sc.nextLine());
 
-		Article a = new Article(code, desc, pvp, stck, minStck);
+			a = new Article(code, desc, pvp, stck, minStck);
+
+		}
 		return a;
-
 	}
 
 	private static void insertDataNewFile(Scanner sc, File f) {
@@ -116,6 +115,7 @@ public class Ex03_Articles {
 
 			}
 
+		} catch (EOFException eof) {
 		} catch (ClassNotFoundException cnf) {
 			System.out.println("Error: fallo na clase");
 		} catch (FileNotFoundException fnf) {
@@ -131,7 +131,8 @@ public class Ex03_Articles {
 		}
 	}
 
-	private static void validateCode(int code) {
+	private static boolean validateCode(int code) {
+		boolean codeValidated = false;
 		File codesFile = (new File("articlesCodes.dat"));
 		FileOutputStream fos = null;
 		DataOutputStream dos = null;
@@ -142,14 +143,18 @@ public class Ex03_Articles {
 		if (codesFile.exists()) {
 			try {
 				fis = new FileInputStream(codesFile);
+				fos = new FileOutputStream(codesFile);
 				dis = new DataInputStream(fis);
+				dos = new DataOutputStream(fos);
 
 				while (true) {
 					int oldCode = dis.read();
 					if (newCode == oldCode) {
 						System.out.println("Codigo repetido");
+						break;
 					} else {
-						// escribir o código
+						dos.writeInt(newCode);
+						codeValidated = true;
 					}
 				}
 			} catch (IOException ioe) {
@@ -168,8 +173,9 @@ public class Ex03_Articles {
 				fos = new FileOutputStream(codesFile);
 				dos = new DataOutputStream(fos);
 				System.out.println("Creando rexistro de código");
-				
+
 				dos.writeInt(code);
+				codeValidated = true;
 
 			} catch (IOException e) {
 
@@ -186,6 +192,7 @@ public class Ex03_Articles {
 			}
 
 		}
+		return codeValidated;
 	}
 }
 
