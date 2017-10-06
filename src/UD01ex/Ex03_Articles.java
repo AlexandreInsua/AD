@@ -1,7 +1,6 @@
 package UD01ex;
 
 import java.io.DataInputStream;
-import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.io.EOFException;
 import java.io.File;
@@ -19,34 +18,69 @@ public class Ex03_Articles {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		File f = new File("Artigos.dat");
-		File fcods = new File("articlesCodes.dat");
-		runMenu(sc, f);
+		try {
+			runMenu(sc, f);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private static void runMenu(Scanner sc, File f) {
-		System.out.println("Introduza a opción:\n1.- Inserir datos\n2.- Listar datos\n3.- Saír");
+		System.out.println(
+				"Introduza a opción:\n1.- Inserir datos\n2.- Listar datos\n3.- Listar productos por debaixo de stock\n4.- Saír");
 		int option = Integer.parseInt(sc.nextLine());
-		while (option != 3) {
-			if (option == 1) {
-				if (f.exists()) {
-					insertData(sc, f);
-				} else {
-					insertDataNewFile(sc, f);
+		while (option != 4) {
+
+			switch (option) {
+			case 1:
+				try {
+					if (f.exists()) {
+						insertData(sc, f);
+					}else {
+						insertDataNewFile(sc, f);
+					}
+						
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
 				}
-			}
-			if (option == 2) {
+			
+				break;
+
+			case 2:
 				readFile(f);
+				break;
+			case 3:
+				readCriticalStock(f);
+				break;
+			case 4:
+				System.exit(0);
+				break;
+			default:
+				System.out.println("Insirar unha ocpión válida.");
+				break;
 			}
-			System.out.println("Introduza a opción:\n1.- Inserir datos\n2.- Listar datos\n3.- Saír");
+			System.out.println(
+					"Introduza a opción:\n1.- Inserir datos\n2.- Listar datos\n3.- Listar productos por debaixo de stock\n4.- Saír");
 			option = Integer.parseInt(sc.nextLine());
 		}
+	}
+
+	private static void readCriticalStock(File f) {
+		System.out.println("Artigos por debaixo de stock");
+
 	}
 
 	private static Article askForObject(Scanner sc) {
 		Article a = null;
 		System.out.println("Introduza os datos do Obxecto: ");
 		System.out.println("Código: ");
-		int code = Integer.parseInt(sc.nextLine());
+		int code = 0;
+		try {
+			code = Integer.parseInt(sc.nextLine());
+		} catch (NumberFormatException e) {
+
+			e.printStackTrace();
+		}
 		if (validateCode(code)) {
 			System.out.println("Código: ");
 			code = Integer.parseInt(sc.nextLine());
@@ -88,7 +122,12 @@ public class Ex03_Articles {
 		try {
 			fos = new FileOutputStream(f, true);
 			moos = new MyObjectOutputStream(fos);
-			moos.writeObject(askForObject(sc));
+			try {
+				moos.writeObject(askForObject(sc));
+			} catch (NumberFormatException e) {
+
+				e.printStackTrace();
+			}
 			moos.close();
 
 		} catch (FileNotFoundException e) {
@@ -107,17 +146,22 @@ public class Ex03_Articles {
 		try {
 			fis = new FileInputStream(f);
 			ois = new ObjectInputStream(fis);
-			System.out.println("Código\tDescrp.\tPrezo\tExists.\tExists. míns.");
+			System.out.println("Código\tDescrp.\tPrezo\tExists.\t\tExists. míns.\tTotal");
 			while (true) {
 				Article a = (Article) ois.readObject();
+				double pvp = a.getPVP();
+				int stock = a.getStock();
+				double total = pvp * stock;
 				System.out.println(a.getCODIGO() + "\t " + a.getDescription() + "\t " + a.getPVP() + "\t "
-						+ a.getStock() + "\t " + a.getMinStock());
+						+ a.getStock() + "\t\t " + a.getMinStock() + "\t\t" + total + "€");
 
 			}
 
 		} catch (EOFException eof) {
 		} catch (ClassNotFoundException cnf) {
 			System.out.println("Error: fallo na clase");
+		} catch (NullPointerException npe) {
+			System.out.println("Error: ficheiro non encontrado.");
 		} catch (FileNotFoundException fnf) {
 			System.out.println("Error: ficheiro non encontrado.");
 		} catch (IOException ioe) {
@@ -125,6 +169,8 @@ public class Ex03_Articles {
 		} finally {
 			try {
 				ois.close();
+			} catch (NullPointerException npe) {
+				System.out.println("Error: ficheiro non encontrado.");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -148,13 +194,17 @@ public class Ex03_Articles {
 				dos = new DataOutputStream(fos);
 
 				while (true) {
-					int oldCode = dis.read();
-					if (newCode == oldCode) {
-						System.out.println("Codigo repetido");
-						break;
-					} else {
-						dos.writeInt(newCode);
-						codeValidated = true;
+					try {
+						int oldCode = dis.read();
+						if (newCode == oldCode) {
+							System.out.println("Codigo repetido");
+							break;
+						} else {
+							dos.writeInt(newCode);
+							codeValidated = true;
+						}
+					} catch (NumberFormatException e) {
+						System.out.println("Introduza un número como código.");
 					}
 				}
 			} catch (IOException ioe) {
@@ -173,10 +223,8 @@ public class Ex03_Articles {
 				fos = new FileOutputStream(codesFile);
 				dos = new DataOutputStream(fos);
 				System.out.println("Creando rexistro de código");
-
 				dos.writeInt(code);
 				codeValidated = true;
-
 			} catch (IOException e) {
 
 				e.printStackTrace();
@@ -185,17 +233,15 @@ public class Ex03_Articles {
 					dos.close();
 					fos.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
 			}
-
 		}
 		return codeValidated;
 	}
 }
 
+@SuppressWarnings("serial")
 class Article implements Serializable {
 	private int CODIGO;
 	private String description;

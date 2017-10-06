@@ -8,11 +8,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.RandomAccessFile;
-import java.util.Scanner;
 
 /*4º) Codificar un programa que nos permita actualizar el fichero de artículos. Para ello tenemos un fichero
 de movimientos VENTAS.DAT que contiene toda la información de las compras y las ventas realizadas, otro
@@ -33,6 +31,7 @@ public class Ex04_ventas {
 	static int tamanhoRexistro = 40;
 
 	public static void main(String[] args) {
+		@SuppressWarnings("unused")
 		File f = new File("Artigos.dat");
 		String option;
 
@@ -304,6 +303,7 @@ public class Ex04_ventas {
 
 	}
 
+	@SuppressWarnings("unused")
 	private static String recuperarArticulo(int numArt) {
 		// para acceder de manera aleatoria al fichero ARTICULOS.DAT
 		File f = new File("Articulos.DAT");
@@ -345,6 +345,7 @@ public class Ex04_ventas {
 		return articulo;
 	}
 
+	@SuppressWarnings("unused")
 	private static void listarArtigos() {
 		int numArt = 0;
 		String articulo = "";
@@ -371,7 +372,6 @@ public class Ex04_ventas {
 				minimo = puntero.readInt();
 				if (numArt != 0)
 					System.out.println(numArt + " " + articulo + " " + stock);
-
 			}
 
 		} catch (EOFException eof) {

@@ -1,6 +1,5 @@
 package UD01ex;
 
-import java.awt.image.DataBuffer;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
