@@ -14,14 +14,14 @@ public class Exemplo04File_mostra_propiedades_ficheiro {
 		File f = new File("C:" + separador + "Users" + separador + "Alexandre" + separador + "Documents" + separador
 				+ "favicon.jpg");
 		
-		System.out.println("Nome do ficheiro: " + f.getName());
-		System.out.println("Ruta : " + f.getPath());
-		System.out.println("Ruta absoluta : " + f.getAbsolutePath());
-		System.out.println("Ruta anterior : " + f.getParent());
-		System.out.println("Pódese escribir : " + f.canWrite());
-		System.out.println("Pódese ler : " + f.canRead());
-		System.out.println("Tamaño : " + f.length() + " bytes");
-		System.out.println("É un directorio : " + f.isDirectory());
-		System.out.println("É un ficheiro : " + f.isFile());
+		System.out.println("Nome do ficheiro: \t" + f.getName());
+		System.out.println("Ruta : \t" + f.getPath());
+		System.out.println("Ruta absoluta : \t" + f.getAbsolutePath());
+		System.out.println("Ruta anterior : \t" + f.getParent());
+		System.out.println("Pódese escribir: \t" + f.canWrite());
+		System.out.println("Pódese ler: \t" + f.canRead());
+		System.out.println("Tamaño: \t" + f.length() + " bytes");
+		System.out.println("É un directorio: \t" + f.isDirectory());
+		System.out.println("É un ficheiro: \t" + f.isFile());
 	}
 }

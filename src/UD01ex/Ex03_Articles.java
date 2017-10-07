@@ -1,5 +1,8 @@
 package UD01ex;
 
+/*
+ *  Xestiona o ficheiro artigos.dat 
+ */
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.EOFException;
@@ -36,14 +39,14 @@ public class Ex03_Articles {
 				try {
 					if (f.exists()) {
 						insertData(sc, f);
-					}else {
+					} else {
 						insertDataNewFile(sc, f);
 					}
-						
+
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
 				}
-			
+
 				break;
 
 			case 2:

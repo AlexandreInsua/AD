@@ -2,7 +2,10 @@ package UD01ex;
 
 import java.io.File;
 import java.util.Scanner;
-
+/*
+ * Mostra os ficheiros dun directorio que se lle pasa por teclado.
+ * Mostra a información dun ficheiro que se lle pasa por teclado.
+ */
 public class Ex01_mostrarDirectorioFicheiro {
 
 	public static void main(String[] args) {
@@ -16,9 +19,9 @@ public class Ex01_mostrarDirectorioFicheiro {
 		if (f.exists()) {
 			try {
 				System.out.println("Listaxe de ficheiros do directorio: ");
-				String[] arquivos = f.list();
-				for (int i = 0; i < arquivos.length; i++) {
-					System.out.println(arquivos[i]);
+				String[] files = f.list();
+				for (int i = 0; i < files.length; i++) {
+					System.out.println(files[i]);
 				}
 			} catch (Exception e) {
 				System.out.println("O directorio non existe");

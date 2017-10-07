@@ -24,6 +24,7 @@ public class Exemplo19_escrituraXML {
 		RandomAccessFile raf = new RandomAccessFile(fichero, "r");
 		int clave, edad;
 		long posicion = 0; // para situarnos al principio del fichero
+		@SuppressWarnings("unused")
 		String nombre, aux;
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		try {

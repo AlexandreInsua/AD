@@ -6,7 +6,8 @@ public class Exemplo21_z_Alumno {
 
 }
 
- class Alumno implements Serializable{
+ @SuppressWarnings("serial")
+class Alumno implements Serializable{
 	//atributos
 		String dni;
 		String nombre;

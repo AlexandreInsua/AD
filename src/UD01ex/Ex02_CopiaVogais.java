@@ -1,5 +1,9 @@
 package UD01ex;
 
+/*
+ * Le o ficheiro de texto Nomes.txt e copia en vogaisNomes.txt unicamente a vogais
+ */
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -19,15 +23,15 @@ public class Ex02_CopiaVogais {
 		BufferedWriter bw = new BufferedWriter(fw);
 
 		if (f.exists()) {
-			int caracter;
+			int character;
 
-			while ((caracter = br.read()) != -1) {
-				if (caracter == 'a' || caracter == 'A' || caracter == 'e' || caracter == 'E'
-						|| caracter == 'i' || caracter == 'I' || caracter == 'o' || caracter == 'O'
-						||caracter == 'u' || caracter == 'U') {
-					
-					System.out.println("lendo caracter...: "+ (char)caracter);
-					bw.write((char) caracter);
+			while ((character = br.read()) != -1) {
+				if (character == 'a' || character == 'A' || character == 'e' || character == 'E' || character == 'i'
+						|| character == 'I' || character == 'o' || character == 'O' || character == 'u'
+						|| character == 'U') {
+
+					System.out.println("lendo caracter...: " + (char) character);
+					bw.write((char) character);
 					System.out.println("vogal escrita.");
 				}
 			}

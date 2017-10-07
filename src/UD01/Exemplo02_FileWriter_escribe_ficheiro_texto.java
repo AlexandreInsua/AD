@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Exemplo02FileWriter_escribe_ficheiro_texto {
+public class Exemplo02_FileWriter_escribe_ficheiro_texto {
 
 	/*
 	 * Escribe caracteres nun ficheiro de nome Caracteres.txt (se non existir,
@@ -23,7 +23,7 @@ public class Exemplo02FileWriter_escribe_ficheiro_texto {
 		// Creo o fluxo de escritura
 		FileWriter fw = new FileWriter(f);
 
-		// Convirte un String nun arrya de caracteres
+		// Convirte un String nun array de caracteres
 		char[] cad = cadea.toCharArray();
 
 		// Para cada caracter obtido do paso anterior

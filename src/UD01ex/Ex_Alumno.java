@@ -11,7 +11,7 @@ import java.util.Scanner;
 /*
  * Escribe nun ficheiro o nome e tres notas dun alumno. Le o ficheiro e devolve a información, a nota media do alumno e a do grupo.
  */
-public class Ex99_Alumno {
+public class Ex_Alumno {
 
 	public static void main(String[] args) throws IOException {
 
@@ -21,8 +21,6 @@ public class Ex99_Alumno {
 
 		Scanner sc = new Scanner(System.in);
 		String opcion = "";
-
-
 		
 		while (!opcion.equalsIgnoreCase("n")) {
 			System.out.println("Por favor introduza o alumno: ");
