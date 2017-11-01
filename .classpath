@@ -5,5 +5,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/XML"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JDBC"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/SQLITE"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/DB4O"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/HDBSQLDB"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
