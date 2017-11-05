@@ -26,7 +26,8 @@ public class VentanaNuevo extends JFrame {
 	private JTextField textIdade;
 	private JTextField textTelefono;
 
-	private Coordinador miCoordinador;
+	// TODO isto é correcto????
+	private Coordinador miCoordinador = new Coordinador();
 
 	/**
 	 * Launch the application.
@@ -113,6 +114,8 @@ public class VentanaNuevo extends JFrame {
 				// Loxica validarRegistro(miPersona);
 				// PersonaDAO inserirPersoa(PersoaVo miPersona)
 
+				// TODO isto é correcto????
+				
 				// ISTO TEN QUE SER INCORRECTO
 				PersoaVo miPersona = new PersoaVo();
 				miPersona.setIdPersoa(Integer.parseInt(textCodigo.getText()));
