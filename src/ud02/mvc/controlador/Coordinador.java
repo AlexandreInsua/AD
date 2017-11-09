@@ -9,15 +9,16 @@ import ud02.mvc.vo.PersoaVo;
 public class Coordinador {
 
 	private Loxica miLogica = new Loxica();
-	private VentanaPrincipal miVentanaPrincipal = new VentanaPrincipal();
-	private VentanaNuevo miVentanaRegistro = new VentanaNuevo();
-	private VentanaBuscar miVentanaBuscar = new VentanaBuscar();
+	private VentanaPrincipal miVentanaPrincipal = null;
+	private VentanaNuevo miVentanaRegistro = null;
+	private VentanaBuscar miVentanaBuscar = null;
 
 	public VentanaPrincipal getMiVentanaPrincipal() {
 		return miVentanaPrincipal;
 	}
 
 	public void setMiVentanaPrincipal(VentanaPrincipal miVentanaPrincipal) {
+		miVentanaPrincipal = new VentanaPrincipal();
 		this.miVentanaPrincipal = miVentanaPrincipal;
 	}
 
@@ -26,6 +27,7 @@ public class Coordinador {
 	}
 
 	public void setMiVentanaRegistro(VentanaNuevo miVentanaRegistro) {
+		miVentanaRegistro = new VentanaNuevo();
 		this.miVentanaRegistro = miVentanaRegistro;
 	}
 
@@ -34,6 +36,7 @@ public class Coordinador {
 	}
 
 	public void setMiVentanaBuscar(VentanaBuscar miVentanaBuscar) {
+		miVentanaBuscar = new VentanaBuscar();
 		this.miVentanaBuscar = miVentanaBuscar;
 	}
 
