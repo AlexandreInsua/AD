@@ -19,7 +19,7 @@ public class Exemplo06_sql_acceso {
 		// Password
 		String password = "SegundoDAM";
 		// Localización (no localhost)
-		String url = "jdbc:mysql://localhost:3306/UD02BD01Empregados?serverTimezone=Europe/Madrid";
+		String url = "jdbc:mysql://localhost:3306/UD02BD01Empleados?serverTimezone=Europe/Madrid";
 
 		try {
 			// Codigo para cargar el Driver de la Base de Datos Conector MySQL 6
@@ -32,7 +32,7 @@ public class Exemplo06_sql_acceso {
 			conexion = DriverManager.getConnection(url, user, password);
 			System.err.println("Conexion establecida");
 			// Preparamos la consulta
-			Statement instruccionSQL = conexion.createStatement();
+		/*	Statement instruccionSQL = conexion.createStatement();
 			ResultSet result = instruccionSQL.executeQuery("SELECT DepNome, Localidade FROM Departamentos");
 			// Recorremos el resultado de la consulta visualizando los registros
 			while (result.next()) {
@@ -43,9 +43,9 @@ public class Exemplo06_sql_acceso {
 				// +result.getString(2));
 				System.out.println(result.getString("DepNome") + "\t" + result.getString("Localidade"));
 			} // fin while
-				// Liberar recursos
-			result.close(); // cerrar ResultSet
-			instruccionSQL.close();// cerrar Statement
+*/				// Liberar recursos
+		//	result.close(); // cerrar ResultSet
+			//instruccionSQL.close();// cerrar Statement
 			conexion.close();// cerrar conexión
 		} catch (ClassNotFoundException cnf) {
 			System.out.println("Clase");

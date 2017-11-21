@@ -1,7 +1,5 @@
 package ud02;
-/*
- * Crea unha base de datos
- */
+
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
 
