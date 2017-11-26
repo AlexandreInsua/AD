@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
+// import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -132,7 +132,7 @@ public class VentanaBuscar extends JFrame {
 		JButton btnOk = new JButton("OK");
 		btnOk.setBounds(172, 64, 58, 23);
 		contentPane.add(btnOk);
-		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{contentPane, btnOk, lblNome, lblProfesin, textCodigo, textNome, lblAdministracinDePersoas, textField, lblIdade, textField_1, lblTelfono, textField_2, btnCancelar, btnGardar, lblCdigo, btnModificar, btnEliminar}));
+		// setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{contentPane, btnOk, lblNome, lblProfesin, textCodigo, textNome, lblAdministracinDePersoas, textField, lblIdade, textField_1, lblTelfono, textField_2, btnCancelar, btnGardar, lblCdigo, btnModificar, btnEliminar}));
 	}
 
 	public void setCoordinador(Coordinador miCoordinador) {
