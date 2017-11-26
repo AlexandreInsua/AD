@@ -28,8 +28,8 @@ import com.thoughtworks.xstream.XStream;
 			ListaAlumnos listaalu = new ListaAlumnos();
 			try{
 				while(true){ // lectura del fichero
-					Alumno alumno = (Alumno)datos.readObject();// leer un alumno
-					listaalu.add(alumno); //añadir un alumno a la lista
+					Alumno alumno2 = (Alumno)datos.readObject();// leer un alumno
+					listaalu.add(alumno2); //añadir un alumno a la lista
 				}// fin while
 			}catch(EOFException eo){}
 			datos.close();

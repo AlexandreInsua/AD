@@ -10,7 +10,7 @@ public class Exemplo01_crea_file {
 	public static void main(final String[] args) throws IOException {
 		// Declara un ficheiro
 		File f = new File("Exemplo01.txt");
-		// Crea o ficheiro esplicitamente
+		// Crea o ficheiro explicitamente. boolean createNewFile() Pode provocar IOEXception 
 		f.createNewFile();
 	}
 }

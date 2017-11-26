@@ -18,6 +18,8 @@ public class Exemplo14_FileInputStream_menu {
 	public static void main(final String[] args) {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int opcion = 0;
+
+		/* MENU */
 		do {
 			try {
 				System.out.println("1.- Escribir no fichero");
@@ -42,6 +44,7 @@ public class Exemplo14_FileInputStream_menu {
 		} while (opcion != 3);
 	}
 
+	/* MÉTODO PARA A ESCRITURA EN DISCO */
 	static void EscrituraDisco() {
 		File archivo = null;
 		DataOutputStream flujoescritura = null;
@@ -59,50 +62,51 @@ public class Exemplo14_FileInputStream_menu {
 			} else {
 				flujoescritura = new DataOutputStream(new FileOutputStream(nombrefich, true));
 			}
-			System.out.println("Introduce el nombre del usuario por teclado: ");
+			System.out.println("Introduce o nome de usuario: ");
 			String nombre = new BufferedReader(new InputStreamReader(System.in)).readLine().trim();
-			System.out.println("Introduce el código del usuario por teclado: ");
+			System.out.println("Introduce o código de usuario: ");
 			int codigo = Integer.parseInt(new BufferedReader(new InputStreamReader(System.in)).readLine().trim());
 			flujoescritura.writeInt(codigo);
 			flujoescritura.writeUTF(nombre);
 		} catch (IOException ioe) {
-			System.out.println("No se ha podido escribir la información en el fichero " + archivo.getName());
+			System.out.println("Non se pudo escribir a información no fichero " + archivo.getName());
 		} finally {
 			try {
 				if (flujoescritura != null) {
 					flujoescritura.close();
 				}
 			} catch (IOException ioe) {
-				System.out.println("No se ha podido cerrar correctamente el flujo del fichero " + archivo.getName());
+				System.out.println("No se pudo pechar correctamente o flujo do ficheiro" + archivo.getName());
 			}
 		}
 	}
 
+	/* MÉTODO PARA A LECTURA EN DISCO */
 	static void LecturaDisco() {
 		File archivo = null;
 		DataInputStream flujolectura = null;
 
-		System.out.println("Introduce el nombre del fichero por teclado");
+		System.out.println("Introduce o nome do ficheiro: ");
 		try {
 			archivo = new File(new BufferedReader(new InputStreamReader(System.in)).readLine().trim());
 			flujolectura = new DataInputStream(new FileInputStream(archivo));
-			// Ojo el orden al leer tiene que ser el mismo que al escribir
+			// OLLO !! a orde ao ler ten que ser o mesmo que ao escribir
 			while (true) {
 				System.out.println("Codigo de Usuario: " + flujolectura.readInt());
 				System.out.println("Nombre de Usuario: " + flujolectura.readUTF());
 			}
 		} catch (FileNotFoundException fnf) {
-			System.out.println("No se ha podido encontrar el fichero " + archivo.getName());
+			System.out.println("No se encontrou o ficheiro" + archivo.getName());
 		} catch (EOFException eof) {
 		} catch (IOException ioe) {
-			System.out.println("No se ha podido leer la información del fichero " + archivo.getName());
+			System.out.println("No se puido ler a información do ficheiro " + archivo.getName());
 		} finally {
 			try {
 				if (flujolectura != null) {
 					flujolectura.close();
 				}
 			} catch (IOException ioe) {
-				System.out.println("No se ha podido cerrar el flujo del fichero " + archivo.getName());
+				System.out.println("No se puido pechar o fluxo do ficheiro " + archivo.getName());
 			}
 		} // fin finally
 	}// fin main

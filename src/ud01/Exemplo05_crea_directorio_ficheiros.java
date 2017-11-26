@@ -6,7 +6,7 @@ import java.io.IOException;
 /*
  * Creao un novo directorio no directorio actual, tres ficheiros valeiros e renomea un deles.
  */
-public class Exemplo05_crea_directorio {
+public class Exemplo05_crea_directorio_ficheiros {
 
 	public static void main(String[] args) {
 		// Directorios e ficheiros

@@ -2,11 +2,8 @@ package ud01;
 
 import java.io.Serializable;
 
+// FUNDAMENTAL implementar a interface Serializable //
 public class Persoa implements Serializable {
-
-	/**
-	 * 
-	 */
 	// Engade un id único
 	private static final long serialVersionUID = 1L;
 	private String nombre;

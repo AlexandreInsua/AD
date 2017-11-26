@@ -13,8 +13,8 @@ class ListaAlumnos {
 		super();
 	}
 	
-	public void add(Alumno alumno){
-		lista.add(alumno);
+	public void add(Alumno alumno2){
+		lista.add(alumno2);
 	}
 	public ArrayList<Alumno> getListaAlumno(){
 		return lista;

@@ -5,7 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-public class Exemplo15_FileOutputStream_obxectos {
+public class Exemplo15_escritura_obxectos_append {
 
 	public static void main(final String[] args) throws IOException {
 		FileOutputStream fs = null;

@@ -25,7 +25,7 @@ public class Exemplo21_z_crearFicheiroAlumnos {
 
 			while (true) { // lectura del fichero mientras haya objetos
 				// os debe realizar un castingal tipo original
-				Alumno alu = (Alumno) os.readObject();
+				Alumno2 alu = (Alumno2) os.readObject();
 				System.out.println(alu.getDni() + "\t" + alu.getNombre() + "\t" + alu.getTelefono());
 			}
 		} catch (ClassNotFoundException cnf) {
@@ -54,13 +54,13 @@ public class Exemplo21_z_crearFicheiroAlumnos {
 			fs = new FileOutputStream("Alumnos.DAT");
 			os = new ObjectOutputStream(fs);
 			// declaramos el objeto Alumno usando un constructor y escribimos en el disco
-			Alumno a1 = new Alumno("11111A", "Marta Aguirre", 986141414);
+			Alumno2 a1 = new Alumno2("11111A", "Marta Aguirre", 986141414);
 			os.writeObject(a1);
 
 			// escribimos pasando la creación del objeto
-			os.writeObject(new Alumno("222222B", "Ana Sánchez", 627323232));
+			os.writeObject(new Alumno2("222222B", "Ana Sánchez", 627323232));
 
-			Alumno a2 = new Alumno("333333C", "Pedro García", 615545454);
+			Alumno2 a2 = new Alumno2("333333C", "Pedro García", 615545454);
 			os.writeObject(a2);
 
 			// cerramos el fichero

@@ -6,34 +6,31 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-/* 
- * Le o ficheiro de devolve os caracteres en ascii e texto
- */
+public class Exemplo08FileReader_le_ficheiro_linea {
 
-public class Exemplo09FileReader_le_ficheiro_Caracter {
+	/*
+	 * Vai mostrar por pantalla o contenido do fichero Nomes.txt liña a liña
+	 */
 
-	public static void main(final String[] args) throws IOException {
+	public static void main(final String[] args) {
 		File f = null;
 		FileReader fr = null;
 		BufferedReader br = null;
 		try {
 			f = new File("Nomes.txt");
-			fr = new FileReader(f);
-			// Clase para ler os caracteres
-			br = new BufferedReader(fr);
-
 			if (f.exists()) {
-
-				// Variable coa que se recupera a información
-				int caracter;
-
-				// Le mentres haxa caracteres que recuperar
-				while ((caracter = br.read()) != -1) {
-					// Imprime por consola o ascci e o texto
-					System.out.println(caracter + "\t" + (char) caracter);
+				fr = new FileReader(f);
+				br = new BufferedReader(fr);
+				String nome; // variable donde se recupera la informacion
+				// readLine() apunta á seguinte liña despois de recuperar a liña
+				// actual
+				// Mentres a nova liña non sexa nula
+				while ((nome = br.readLine()) != null) {
+					System.out.println(nome);
 				}
-			} else
+			} else {
 				System.out.println("O ficheiro non existe");
+			}
 		} catch (FileNotFoundException fn) {
 			System.out.println("Non se atopa o ficheiro");
 		} catch (IOException ioe) {

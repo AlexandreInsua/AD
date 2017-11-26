@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 
 /* Escribe unha array de nomes nun ficheiro de texto */
 
-public class Exemplo05FileWriter_escribe_ficheiro_texto {
+public class Exemplo05FileWriter_escribe_ficheiro_texto_array {
 	public static void main(String[] args) throws IOException {
 
 		// array de nomes

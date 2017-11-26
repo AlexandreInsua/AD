@@ -5,18 +5,20 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-public class Exemplo15_lectura_obxectos {
+public class Exemplo16_lectura_obxecto_unico {
 
 	public static void main(final String[] args) {
+		FileInputStream fs = null; 
+		ObjectInputStream ois =null;
 		System.out.println("Nome \t Idade");
 		try {
-			FileInputStream fs = new FileInputStream("Persoas.txt");
-			ObjectInputStream os = new ObjectInputStream(fs);
-			// solo recupera un objeto
+			fs = new FileInputStream("Persoas.txt");
+			ois = new ObjectInputStream(fs);
+			// só recupera o primeiro obxecto
 			// os debe realizar un casting al tipo original
-			Persoa p = (Persoa) os.readObject();
+			Persoa p = (Persoa) ois.readObject();
 			System.out.println(p.getNombre() + "\t " + p.getEdad());
-			os.close();
+			ois.close();
 		} catch (ClassNotFoundException cnf) {
 			System.out.println("Erro a clase");
 		} catch (FileNotFoundException fnfe) {

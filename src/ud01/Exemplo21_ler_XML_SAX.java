@@ -9,7 +9,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
-public class Exemplo20_XML_SAX {
+public class Exemplo21_ler_XML_SAX {
 	public static void main(final String[] args) throws SAXException, IOException {
 		/* ANALIZADOR de XML 
 		 * Actúa como un cursor  indo cara adiante no fluxo do documento

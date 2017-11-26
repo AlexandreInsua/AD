@@ -7,18 +7,18 @@ public class Exemplo21_z_Alumno {
 }
 
  @SuppressWarnings("serial")
-class Alumno implements Serializable{
+class Alumno2 implements Serializable{
 	//atributos
 		String dni;
 		String nombre;
 		long telefono;
 		
 		// constructores
-		public Alumno() {
+		public Alumno2() {
 			super();
 		}
 			
-		public Alumno(String dni, String nombre, long telefono) {
+		public Alumno2(String dni, String nombre, long telefono) {
 			super();
 			this.dni = dni;
 			this.nombre = nombre;

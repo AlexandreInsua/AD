@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class Exemplo12_FileOutputStream_le_array {
+public class Exemplo12_FileOutputStream_escribe_array_enteiros {
 
 	public static void main(final String[] args) {
 		FileOutputStream fos = null;

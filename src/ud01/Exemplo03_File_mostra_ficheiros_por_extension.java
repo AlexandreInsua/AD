@@ -8,10 +8,11 @@ import java.io.File;
 */
 public class Exemplo03_File_mostra_ficheiros_por_extension {
 	public static void main(final String[] args) {
-		
+
 		// separador almacena o tipo de separador utilizado na plataforma, en
 		// windows "\"
-		String separador = File.separator; // NB: separator é atributo da clase File
+		String separador = File.separator; // NB: separator é atributo da clase
+											// File
 
 		// En carpeta almaceno o path do directorio cuxos elementos desexo ver
 		File carpeta = new File("C:" + separador + "Users" + separador + "Alexandre" + separador + "Documents");
@@ -21,10 +22,12 @@ public class Exemplo03_File_mostra_ficheiros_por_extension {
 		// e carpetas dentro da carpeta que lle indiquei
 
 		String[] arquivos = carpeta.list();
-		
+
 		// Mostramos o número de carpetas dentro da que lle pasei
 		System.out.println("Os ficheiros .pdf son:\n");
 		for (int i = 0; i < arquivos.length; i++) {
+			// endsWith() -> mostra a cadea que acaba o sufixo pasado como
+			// argumento.
 			if (arquivos[i].endsWith("pdf") || arquivos[i].endsWith("PDF")) {
 				System.out.println("\t" + carpeta.getAbsolutePath() + separador + arquivos[i]);
 			} // fin do if

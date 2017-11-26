@@ -5,17 +5,19 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-public class Exemplo16_FileInputStream_obxectos {
+public class Exemplo16_lectura_obxectos {
 	public static void main(final String[] args) throws IOException {
 		FileInputStream fs = null;
-		ObjectInputStream os = null;
+		ObjectInputStream ois = null;
 		System.out.println("Nombre \t Edad");
 		try {
-			fs = new FileInputStream("Personas01.txt");
-			os = new ObjectInputStream(fs);
-			while (true) { // lectura del fichero
+			fs = new FileInputStream("Persoas.txt");
+			ois = new ObjectInputStream(fs);
+			
+			// lectura do ficheiro mentres haxa obxectos
+			while (true) { 
 				// os debe realizar un castingal tipo original
-				Persoa p = (Persoa) os.readObject();
+				Persoa p = (Persoa) ois.readObject();
 				System.out.println(p.getNombre() + "\t" + p.getEdad());
 			}
 		} catch (ClassNotFoundException cnf) {
@@ -25,6 +27,6 @@ public class Exemplo16_FileInputStream_obxectos {
 		} catch (IOException ioe) {
 			// System.out.println("Error E/L");
 		}
-		os.close();
+		ois.close();
 	}
 }
