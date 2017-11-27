@@ -1,0 +1,75 @@
+package unidade01;
+
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+public class Exemplo21_z_crearFicheiroAlumnos {
+	public static void main(final String[] args) {
+		crearFicheroObjetos();
+		leerFicheroObjetos();
+	}// fin main
+
+	private static void leerFicheroObjetos() {
+		System.out.println("DNI\t\tNombre \t\t\t Teléfono");
+		FileInputStream fs = null;
+		ObjectInputStream os = null;
+		try {
+			// abrimos el fichero para lectura
+			fs = new FileInputStream("Alumnos.Dat");
+			os = new ObjectInputStream(fs);
+
+			while (true) { // lectura del fichero mientras haya objetos
+				// os debe realizar un castingal tipo original
+				Alumno2 alu = (Alumno2) os.readObject();
+				System.out.println(alu.getDni() + "\t" + alu.getNombre() + "\t" + alu.getTelefono());
+			}
+		} catch (ClassNotFoundException cnf) {
+			System.out.println("Error la clase");
+		} catch (FileNotFoundException fnfe) {
+			System.out.println("Error en el fichero");
+		} catch (EOFException eo) {
+			System.out.println("Fin del fichero");
+		} catch (IOException ioe) {
+			System.out.println("Error");
+		}
+		try {
+			os.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static void crearFicheroObjetos() {
+		// creamos los objetos que nos permiten escribir
+		FileOutputStream fs = null;
+		ObjectOutputStream os = null;
+
+		try {
+			fs = new FileOutputStream("Alumnos.DAT");
+			os = new ObjectOutputStream(fs);
+			// declaramos el objeto Alumno usando un constructor y escribimos en el disco
+			Alumno2 a1 = new Alumno2("11111A", "Marta Aguirre", 986141414);
+			os.writeObject(a1);
+
+			// escribimos pasando la creación del objeto
+			os.writeObject(new Alumno2("222222B", "Ana Sánchez", 627323232));
+
+			Alumno2 a2 = new Alumno2("333333C", "Pedro García", 615545454);
+			os.writeObject(a2);
+
+			// cerramos el fichero
+			os.close();
+		} catch (FileNotFoundException fne) {
+			System.out.println("Error en el fichero");
+		} catch (IOException ioe) {
+			System.out.println("Error E/L");
+		}
+	}
+
+}
