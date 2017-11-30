@@ -9,14 +9,16 @@ import org.neodatis.odb.OID;
 import org.neodatis.odb.core.oid.OIDFactory;
 
 /*
- * Exemplo que accede aos obxectos a travé do seu OID
+ * Exemplo que accede aos obxectos a través do seu OID
  */
 public class Exemplo02_EmpleadoOID {
 	public static void main(String[] args) {
 		// Abrir a bd
 		ODB odb = ODBFactory.open("neodatis.test");
-		// Obter o obxecto con OID 3
+		// Obter o obxecto coa clase OID
+		// Neste caso tomaremos o obxecto cuxo OID é 3
 		OID oid = OIDFactory.buildObjectOID(3);
+		// Recuperamos un obxecto Empleado cuxo OID pedimos anteiormente
 		Empleado empleado = (Empleado) odb.getObjectFromId(oid);
 		visualizarResultados(empleado);
 		// Buscar Empleado segundo o seu OID introducindo os datos desde o

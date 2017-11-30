@@ -9,5 +9,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/HDBSQLDB"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/DBO04"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Neodatis_ODB"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/NeoDatis OODB"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
