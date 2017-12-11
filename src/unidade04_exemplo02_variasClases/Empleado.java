@@ -9,7 +9,6 @@ public class Empleado {
 	private Departamento departamento;
 	public Empleado() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Empleado(int empleCodigo, String empleNombre, String emplePuesto, int empleSalario, int empleComision,
 			Departamento departamento) {
