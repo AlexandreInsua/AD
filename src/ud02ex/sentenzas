@@ -1,2 +1,37 @@
-Crear tablas
+~~~	TÁCTICA:  crear primeiro as bd sql con workbench  
 
+
+CREATE DATABASE UD02BDMySQL - facela a primeira para comprobar as sentenzas - como root
+GRANT ALL ON UD02BDMySQL.* TO 'SegundoDAM'@'localhost' 
+IDENTIFIED BY 'SegundoDAM';
+USE UD02BDMySQL;
+
+
+
+CREATE DATABASE UD02BDSQLite - Créase por consola. As sentenzas finalízanse con punto e coma. As sentenzas de creación non levan a declaración de engine
+CREATE DATABASE UD02BDApache
+
+
+CREATE TABLE IF NOT EXISTS productos (IdNumerico INT, descricion VARCHAR(50), 
+stockActual INT, stockMinimo INT, precio DOUBLE, PRIMARY KEY(IdNumerico)
+) Engine = InnoDB;
+
+CREATE TABLE IF NOT EXISTS Clientes (idCliente INT AUTO_INCREMENT, nombre VARCHAR(50), direccion VARCHAR(50), población VARCHAR(30), telefono CHAR(9), NIF CHAR(10) UNIQUE, PRIMARY KEY(idCliente))
+ Engine = innoDB;
+ 
+ CREATE TABLE IF NOT EXISTS Ventas (idVenta INT AUTO_INCREMENT, fechaVenta DATE, idCliente INT, idProducto INT, cantidad INT, PRIMARY KEY (idVenta), FOREIGN KEY (idCliente) REFERENCES Clientes(idCliente), FOREIGN KEY(idProducto) REFERENCES Productos(IdNumerico) )
+ Engine = innoDB;
+
+
+
+
+
+INSERT INTO productos (IdNumerico, descripción, 
+stockActual, stockMinimo, precio) VALUES ?, ?, ?, ?, ?
+
+INSERT INTO Clientes (idCliente , nombre, direccion, poblacion, telefono, NIF)  VALUES ?, ?, ?, ?, ?
+
+INSERT INTO Ventas (idVenta, fechaVenta , idCliente , idProducto , cantidad ) 
+VALUES ?, ?, ?, ?, ?
+
+SELECT nombre, idVenta, descripcíon, precio, cantidad, precio * cantidad as 'importe' FROM  (ventas INNER JOIN productos USING(idProductos)) INNER JOIN  Clientes USING(idClientes) WHERE idCliente = ?
