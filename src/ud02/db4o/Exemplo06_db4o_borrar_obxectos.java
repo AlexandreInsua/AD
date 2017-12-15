@@ -1,4 +1,4 @@
-package ud02;
+package ud02.db4o;
 
 /* Para eliminar obxectos utilizamos delete(), antes de eliminar cómpre localizar o 
 obxecto que eliminar.
@@ -10,7 +10,7 @@ import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 
 //Eliminar os objetos de nome Beatriz
-public class Exemplo05_db4o_borrar_obxectos {
+public class Exemplo06_db4o_borrar_obxectos {
 	final static String BDPersona = "C:\\Users\\Alexandre\\Documents\\DAM\\db4o\\db4o-8.0\\BDPersonas.yap";
 
 	public static void main(String[] args) {

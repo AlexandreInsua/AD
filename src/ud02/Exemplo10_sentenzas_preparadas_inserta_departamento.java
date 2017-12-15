@@ -4,45 +4,49 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /*
- * Actualiza o salario dos traballadores dun departamento
+ * Insire rexistros na base de datos usando a clase PreparedStatement
+ * Crea un departamento
  */
-public class Exemplo10_sentenzas_preparadas_2 {
+public class Exemplo10_sentenzas_preparadas_inserta_departamento
+{
 	public static void main(String[] args) {
+
+		// Configuración da conexión:
 		Connection conexion = null;
 		String user = "SegundoDAM";
 		String password = "SegundoDAM";
 		String url = "jdbc:mysql://localhost:3306/ud02bd01Empregados?serverTimezone=Europe/Madrid";
 		String driver = "com.mysql.jdbc.Driver";
 
-		// Datos para actualizar
-		int codigo = 10;
-		int suba = 155;
-
 		try {
-			// Cargar o Driver
-			Class.forName(driver).newInstance();
-			// Establecemos a conexión
+			// Cargar driver
+			Class.forName(driver);
 			conexion = DriverManager.getConnection(url, user, password);
-			System.err.println("Conexion establecida");
-			// Construimos a sentenza UPDATE
-			String sql = "UPDATE Empregados SET salario = salario + ? WHERE CodDepartamento = ?";
-			System.out.println(sql);
-			// Preparamos a consulta
-			PreparedStatement sentenza = conexion.prepareStatement(sql);
-			// pasamos os valores (dá igual a orde)
-			sentenza.setInt(2, codigo);
-			sentenza.setInt(1, suba);
+			System.err.println("CONEXIÓN ESTABLECIDA CON ÉXITO");
 
-			// Control
+			// Crear a sentenza SQL
+			// A interrogación deixa pendente os parámetro
+			String sql = "INSERT INTO Departamentos VALUES (?,?,?)";
+
+			// Çonstruimos a PreparedStatement cos índices
+			// Sentenza
+			PreparedStatement sentenza = conexion.prepareStatement(sql);
+			// Construímos os índices e os seus valores
+			sentenza.setInt(1, 55);
+			sentenza.setString(2, "Produción");
+			sentenza.setString(3, "Lugo");
+
+			// Executamso a sentenza
 			int filas = sentenza.executeUpdate();
-			System.out.println("Filas modificadas: " + filas);
+			System.out.println("Filas afectadas: " + filas);
 			conexion.close();
+
 		} catch (ClassNotFoundException cnf) {
 			cnf.printStackTrace();
 		} catch (SQLException sqle) {
+			sqle.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

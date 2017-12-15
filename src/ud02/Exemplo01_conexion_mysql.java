@@ -17,7 +17,7 @@ public class Exemplo01_conexion_mysql {
 		// Usuario
 		String user = "SegundoDAM";
 		// Password
-		String password = "SegundoDAM";
+		String password = "randulfolupe";
 		// Dirección da base de datos
 		// conector, bd, host, porto, uri
 		String url = "jdbc:mysql://localhost:3306/ud02bd01Empregados?serverTimezone=Europe/Madrid";
@@ -31,24 +31,24 @@ public class Exemplo01_conexion_mysql {
 			// enderezo, usuario e contrasinal
 			connection = DriverManager.getConnection(url, user, password);
 
-			// TODO
+			// Isto só se debería usar para os erros, pero queda bonito
 			System.err.println("Conexión establecida");
 
 			// Preparamos a consulta
 			// Establecemos a declaración 
 			Statement instructionSQL = connection.createStatement();
 			// Cando a declaración executa unha Consulta devolve un conxunto de resultados
-			ResultSet result = instructionSQL.executeQuery("SELECT DepNome, localidade FROM Departamentos");
+			ResultSet resultado = instructionSQL.executeQuery("SELECT DepNome, localidade FROM Departamentos");
 
 			// Percorremos o resultado da consulta visualizando os rexistros
 			// mentres houber resultado seguinte...
-			while (result.next()) {
+			while (resultado.next()) {
 				// ... imprime por consola
-				System.out.println(result.getString("Depnome") + "\t" + result.getString("Localidade"));
+				System.out.println(resultado.getString("Depnome") + "\t" + resultado.getString("Localidade"));
 			} // fin while
 
 			// Liberar recursos
-			result.close();
+			resultado.close(); 
 			instructionSQL.close();
 			connection.close();
 			// Lanzada por forName()

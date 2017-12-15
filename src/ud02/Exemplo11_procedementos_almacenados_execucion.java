@@ -9,14 +9,15 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /*
+ * O PROCEDEMENTO ESTÁ CARGADO NA BASE DE DATOS
  * Exemplo que executa o procedemento PrsubidaSal que ten dous parámetros na BD
  */
-public class Exemplo11_procedementos_almacenados {
+public class Exemplo11_procedementos_almacenados_execucion {
 
 	public static void main(String[] args) throws IOException {
 		Connection conexion = null;
 		String user = "SegundoDAM";
-		String password = "SegundoDAM";
+		String password = "randulfolupe";
 		String url = "jdbc:mysql://localhost:3306/ud02bd01Empregados?serverTimezone=Europe/Madrid";
 		String driver = "com.mysql.jdbc.Driver";
 
@@ -24,6 +25,7 @@ public class Exemplo11_procedementos_almacenados {
 		String subida = null;
 		try {
 			// O método pode lanzar a excepción IOException
+			//	AQUÍ RECIBE OS PARÁMETROS QUE LLE VAI PASAR AO PROCEDEMENTO 
 			depar = IntroducirDatos("Introduza o código de departamento: ");
 			subida = IntroducirDatos("Introduce o aumento do salario: ");
 		} catch (IOException e) {

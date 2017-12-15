@@ -8,7 +8,7 @@ import java.sql.Statement;
 /*
  * Crea unha vista (Totais) que contén cada departamento, o código, o nome, o número de empregados e a suma de salarios.
  */
-public class Exemplo09_crea_vista {
+public class Exemplo10_crea_vista {
 	public static void main(String[] args) {
 		// Parámetros da conexión
 

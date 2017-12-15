@@ -42,9 +42,12 @@ public class Exemplo12_Erros_SQLException {
 		} catch (SQLException sqle) {
 			// sqle.printStackTrace();
 			System.out.println("OCORREU UN ERRO");
+			// Devolve unha cadea que describe o erro
 			System.out.println("Mensaxe: " + sqle.getMessage());
+			// Devolve unha cadea que contén un estado defindo polo estándar X/OPEN SQL
 			System.out.println("SQL estado: " + sqle.getSQLState());
-			System.out.println("Cod. error: " + sqle.getErrorCode());
+			// Código de erro
+			System.out.println("Cod. erro: " + sqle.getErrorCode());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

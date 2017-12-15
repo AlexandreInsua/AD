@@ -16,55 +16,69 @@ import java.sql.Types;
  * cuxo código é pasado como parámetro.
 */
 
-public class Exemplo11_procedementos_almaceandos_permisos {
+public class Exemplo11_procedementos_almacenados_permisos_retorno {
 
 	public static void main(String[] args) throws IOException {
 		Connection conexion = null;
 		String user = "SegundoDAM";
 		String password = "SegundoDAM";
-		// Dá acceso aos procedementos 
+		// Dá acceso aos procedementos
 		String url = "jdbc:mysql://localhost:3306/ud02bd01Empregados?serverTimezone=Europe/Madrid&noAccessToProcedureBodies=true";
 		String driver = "com.mysql.jdbc.Driver";
+
+		// A interface CallableStatement permite que se poda chamar desde Java
+		// aos procementos e funcións almacenados.
 		
-		// A interface CallableStatement permite que se poda chamar desde Java aos procementos almacenados.
 		CallableStatement chamadaFuncion = null;
-		//variables auxiliares para introducir os distintos tipos de datos
-		int auxInt = 0;
 		
-		try{
+		// variables auxiliares para introducir os distintos tipos de datos
+		int auxInt = 0;
+
+		try {
 			// Codigo para cargar o Driver da BD
 			Class.forName(driver).newInstance();
 			// Establecemos a conexión
 			conexion = DriverManager.getConnection(url, user, password);
 			System.err.println("Conexion establecida");
-			// Senteza en SQL para executar a función sería  SELECT FuAnhosTrabajados (15);
+		
+			// Senteza en SQL para executar a función sería SELECT
+			// FuAnhosTrabajados (15);
 			// Construimos a orde de chamada
 			// {? = CALL -> Chama a unha función
 			// o (?) -> indica que se lle vai pasar un parámetro
+			// O primeiro ? é o que devolve e os outros os parámetros que recibe
 			String sql = "{? = CALL FuAnhoTrabajo (?)}";
-			// Preparamos a chamada ao procedemento 
+			
+			
+			// Preparamos a chamada ao procedemento
+				
 			chamadaFuncion = conexion.prepareCall(sql);
-			// Dámoslle valor aos argumentos valor de retorno
+			// e 
+			// REXISTRAMOS QUE IMOS TER VALORES DE RETORNO
 			chamadaFuncion.registerOutParameter(1, Types.INTEGER);
+			
 			// Parámetro de entrada
 			auxInt = Integer.parseInt(IntroducirDatos("Código de empregado: "));
 			chamadaFuncion.setInt(2, auxInt);
 			// Executamos o procedemento
 			chamadaFuncion.execute();
+
+			// GARDAMOS O RESULTADO
 			int anhos = chamadaFuncion.getInt(1);
-			System.out.println("O Empregado: " +auxInt +" Anos: " +anhos);
+			System.out.println("O Empregado: " + auxInt + " Anos: " + anhos);
+			
 			// Otra forma de visualizar la informacion
-			System.out.println("El empregado: " +auxInt +" Años: " +chamadaFuncion.getInt(1));
+			System.out.println("El empregado: " + auxInt + " Años: " + chamadaFuncion.getInt(1));
 			conexion.close();
-			}catch(ClassNotFoundException cnf){
+		} catch (ClassNotFoundException cnf) {
 			cnf.printStackTrace();
-			}catch(SQLException sqle){
+		} catch (SQLException sqle) {
 			sqle.printStackTrace();
-			}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
-			}
-			} // fin
-																																																														// main
+		}
+	} // fin
+		// main
 	// Método para introducir datos desde o teclado
 
 	public static String IntroducirDatos(final String cad) throws IOException {

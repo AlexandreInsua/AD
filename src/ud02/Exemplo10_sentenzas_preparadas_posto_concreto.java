@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Exemplo10_sentenzas_preparadas_empregado_concreto {
+public class Exemplo10_sentenzas_preparadas_posto_concreto {
 	public static void main(String[] args) throws IOException {
 		Connection conexion = null;
 		String user = "SegundoDAM";
@@ -18,7 +18,7 @@ public class Exemplo10_sentenzas_preparadas_empregado_concreto {
 		String driver = "com.mysql.jdbc.Driver";
 		String depar = null;
 		String oficio = null;
-		// Hai un método para introducir os datos
+		// MÉTODO PARA INTRODUCIR DATOS
 		// Como lanza una posible excepción hai que engadir a throws IOException
 		depar = IntroducirDatos("Introducir o departamento: ");
 		oficio = IntroducirDatos("Introducir o posto de traballo: ");

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /*
- * Utilizamos os métodos do obxecto Statement:
+ * Utilizamos os métodos da clase Statement:
  * executeQuery(SELECT)
  * executeUpdate(INSERT, UPDATE, DELETE)
  * execute( procedementos almacenados )
@@ -15,13 +15,13 @@ import java.sql.Statement;
 /*
  * O seguinte exemplo insire un departamento na exemplo 
  */
-public class Exemplo08_sentanzas_manipulacion_datos {
+public class Exemplo08_sentenzas_manipulacion_datos_insert {
 
 	public static void main(String[] args) {
 		
 		Connection conexion = null;
 		String user = "SegundoDAM";
-		String password = "SegundoDAM";
+		String password = "randulfo";
 		String url = "jdbc:mysql://localhost:3306/ud02bd01Empregados?serverTimezone=Europe/Madrid";
 		String driver = "com.mysql.jdbc.Driver";
 		

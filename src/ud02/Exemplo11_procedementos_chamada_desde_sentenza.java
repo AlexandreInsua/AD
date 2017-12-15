@@ -27,21 +27,25 @@ public class Exemplo11_procedementos_chamada_desde_sentenza {
 		ResultSet result = null;
 
 		try {
-			// Codigo para cargar el Driver de la Base de Datos
+			// Codigo para cargar o driver
 			Class.forName(driver).newInstance();
-			// Establecemos la conexión
+
+			// Establecemos a conexión
 			conexion = DriverManager.getConnection(url, user, password);
 			System.err.println("Conexion establecida");
-			// sentecia en SQL podría ser
+
+			// sentenza en SQL podería ser
 			// SELECT Empleados.nombre, FuAnhoTrabajo(CodEmpregado) FROM
 			// empregados ;
-			// creamos la sentencia SQL
+			// creamos a sentencia SQL
 			String sql = "SELECT Empregados.nome, FuAnhoTrabajo(CodEmpregado) FROM empregados ;";
-			// System.out.println(sql);
+
 			// Construimos o PreparedStatement
 			pstm = conexion.prepareStatement(sql);
+
 			// Creamos o resultado da consulta
 			result = pstm.executeQuery();
+			
 			// Percorremos o resultado da consulta visualizando os rexistros
 
 			while (result.next()) {
