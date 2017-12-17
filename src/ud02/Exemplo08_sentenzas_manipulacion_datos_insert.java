@@ -21,13 +21,13 @@ public class Exemplo08_sentenzas_manipulacion_datos_insert {
 		
 		Connection conexion = null;
 		String user = "SegundoDAM";
-		String password = "randulfo";
+		String password = "randulfolupe";
 		String url = "jdbc:mysql://localhost:3306/ud02bd01Empregados?serverTimezone=Europe/Madrid";
 		String driver = "com.mysql.jdbc.Driver";
 		
 		// datos para inserir
-		String codigo = "50";
-		String nome = "I+D";
+		String codigo = "60";
+		String nome = "I";
 		String localidade = "Redondela";
 		try{
 			// Código para cargar o Driver da bd

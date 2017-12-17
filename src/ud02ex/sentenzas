@@ -3,7 +3,7 @@
 
 CREATE DATABASE UD02BDMySQL - facela a primeira para comprobar as sentenzas - como root
 GRANT ALL ON UD02BDMySQL.* TO 'SegundoDAM'@'localhost' 
-IDENTIFIED BY 'SegundoDAM';
+IDENTIFIED BY 'randulfolupe';
 USE UD02BDMySQL;
 
 
