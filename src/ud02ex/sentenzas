@@ -14,12 +14,13 @@ CREATE DATABASE UD02BDApache
 
 CREATE TABLE IF NOT EXISTS productos (IdNumerico INT, descricion VARCHAR(50), 
 stockActual INT, stockMinimo INT, precio DOUBLE, PRIMARY KEY(IdNumerico)
-) Engine = InnoDB;
+);
 
 CREATE TABLE IF NOT EXISTS Clientes (idCliente INT AUTO_INCREMENT, nombre VARCHAR(50), direccion VARCHAR(50), población VARCHAR(30), telefono CHAR(9), NIF CHAR(10) UNIQUE, PRIMARY KEY(idCliente))
  Engine = innoDB;
  
- CREATE TABLE IF NOT EXISTS Ventas (idVenta INT AUTO_INCREMENT, fechaVenta DATE, idCliente INT, idProducto INT, cantidad INT, PRIMARY KEY (idVenta), FOREIGN KEY (idCliente) REFERENCES Clientes(idCliente), FOREIGN KEY(idProducto) REFERENCES Productos(IdNumerico) )
+ CREATE TABLE IF NOT EXISTS Ventas (idVenta INT AUTO_INCREMENT, fechaVenta DATE, idCliente INT, idProducto INT, cantidad INT, PRIMARY KEY (idVenta),
+  FOREIGN KEY (idCliente) REFERENCES Clientes(idCliente), FOREIGN KEY(idProducto) REFERENCES Productos(IdNumerico) )
  Engine = innoDB;
 
 

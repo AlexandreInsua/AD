@@ -40,5 +40,4 @@ public class Principal {
 	miCoordinador.setMiLogica(miLogica);
 	miVentanaPrincipal.setVisible(true);
 	}
-	}
-
+}
