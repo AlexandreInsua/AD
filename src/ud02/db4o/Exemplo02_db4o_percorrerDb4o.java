@@ -4,13 +4,17 @@ import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 
-//Recuperar todos los objetos de la base de datos
+/* Exemplo que recupera todos los objetos de la base de datos
+ * 
+ */
 public class Exemplo02_db4o_percorrerDb4o {
 	final static String BDPersona = "C:\\Users\\Alexandre\\Documents\\DAM\\db4o\\db4o-8.0\\BDPersoas.yap";
 
+	final static String BDPersona2 = "BDPersoas.yap";
+
 	public static void main(String[] args) {
 		// Abrir a bd
-		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDPersona);
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDPersona2);
 
 		// Instanciamos un obxecto (cun valor a null, busca todos)
 		Person p = new Person(null, null);
@@ -30,6 +34,7 @@ public class Exemplo02_db4o_percorrerDb4o {
 			// percorrer os obxectos
 			while (resultado.hasNext()) {
 				p = resultado.next();
+				// Usa os getters do obxecto Person
 				System.out.println("Nome: " + p.getName() + "\tCidade: " + p.getCity());
 			} // fin while
 		} // fin else

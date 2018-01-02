@@ -1,18 +1,21 @@
 package ud02.db4o;
 
-/* Para eliminar obxectos utilizamos delete(), antes de eliminar cómpre localizar o 
-obxecto que eliminar.
-
- O seguinte exemplo elimina os objxectos cuxo nome sexa Beatriz:
-*/
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 
-//Eliminar os objetos de nome Beatriz
+/*
+ * O seguinte exemplo elimina os objxectos cuxo nome sexa Beatriz:
+*/
+
 public class Exemplo06_db4o_borrar_obxectos {
 	final static String BDPersona = "C:\\Users\\Alexandre\\Documents\\DAM\\db4o\\db4o-8.0\\BDPersonas.yap";
 
+	/*
+	 * Para eliminar obxectos utilizamos delete(), antes de eliminar cómpre
+	 * localizar o obxecto que eliminar.
+	 */
+	// Eliminar os objetos de nome Beatriz
 	public static void main(String[] args) {
 		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDPersona);
 		Person per = new Person("Beatriz", null);

@@ -4,6 +4,9 @@ public class Person {
 	private String name;
 	private String city;
 
+	/* Clase que é o obxecto que manexa a aplicación 
+	 * Necesita getters e setters */
+	
 	public Person(String name, String city) {
 		super();
 		this.name = name;
