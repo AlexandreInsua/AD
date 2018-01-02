@@ -50,7 +50,7 @@ public class Coordinador {
 
 	//////////////////////////////////////////////////////////
 	public void mostrarVentanaRegistro() {
-		
+		miVentanaRegistro = new VentanaNuevo();
 		miVentanaRegistro.setVisible(true);
 	}
 
