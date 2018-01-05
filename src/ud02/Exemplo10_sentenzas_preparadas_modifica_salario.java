@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /*
- * Actualiza o salario dos traballadores dun departamento
+ * Actualiza o salario dos traballadores dun departamento usando a clase PrepareStatement
  */
 public class Exemplo10_sentenzas_preparadas_modifica_salario {
 	public static void main(String[] args) {
@@ -28,11 +28,16 @@ public class Exemplo10_sentenzas_preparadas_modifica_salario {
 			conexion = DriverManager.getConnection(url, user, password);
 			System.err.println("Conexion establecida");
 			// Construimos a sentenza UPDATE
+			
 			// repara como se contrúe a sentenza
 			String sql = "UPDATE Empregados SET salario = salario + ? WHERE CodDepartamento = ?";
 			System.out.println(sql);
+			
+			// PRIMEIRO declarar a sentenza
 			// Preparamos a consulta
 			PreparedStatement sentenza = conexion.prepareStatement(sql);
+			
+			// SEGUNDO rexistrar os parámetros
 			// pasamos os valores (dá igual a orde)
 			// o primeiro parámetro é a orde de ?
 			sentenza.setInt(2, codigo);

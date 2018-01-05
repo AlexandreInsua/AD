@@ -5,16 +5,17 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+
 /*
+ * O seguinte exemplo insire un departamento na exemplo 
+ * Usa Statement non preparada
+ *//*
  * Utilizamos os métodos da clase Statement:
  * executeQuery(SELECT)
  * executeUpdate(INSERT, UPDATE, DELETE)
  * execute( procedementos almacenados )
  */
 
-/*
- * O seguinte exemplo insire un departamento na exemplo 
- */
 public class Exemplo08_sentenzas_manipulacion_datos_insert {
 
 	public static void main(String[] args) {
@@ -34,7 +35,7 @@ public class Exemplo08_sentenzas_manipulacion_datos_insert {
 			Class.forName(driver).newInstance();
 			// Establecemos a conexión
 			conexion = DriverManager.getConnection(url,user, password);
-			// Contruipmos a sentenza
+			// Contruimos a sentenza 
 			// É importante coidar onde van as comiñas simples '' !!!
 			String sql = "INSERT INTO departamentos VALUES ('"+codigo+"','"+
 			nome +"','"+ localidade+"');";

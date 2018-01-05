@@ -26,13 +26,18 @@ public class Exemplo10_sentenzas_preparadas_inserta_departamento
 			conexion = DriverManager.getConnection(url, user, password);
 			System.err.println("CONEXIÓN ESTABLECIDA CON ÉXITO");
 
+
 			// Crear a sentenza SQL
 			// A interrogación deixa pendente os parámetro
 			String sql = "INSERT INTO Departamentos VALUES (?,?,?)";
 
 			// Çonstruimos a PreparedStatement cos índices
-			// Sentenza
+			
+			// 	PRIMEIRO CREAR A SENTENZA
 			PreparedStatement sentenza = conexion.prepareStatement(sql);
+			
+			// DESPOIS REXISTRAR OS ÍNDICES
+			// un método pode recibir n parametros para establecer  os índices
 			// Construímos os índices e os seus valores
 			sentenza.setInt(1, 55);
 			sentenza.setString(2, "Produción");

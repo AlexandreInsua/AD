@@ -9,6 +9,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/* Exemplo que devolve os empregados do departamento e do posto de traballo 
+ * que se lle pasa como parámetro 
+ *  
+ */
 public class Exemplo10_sentenzas_preparadas_posto_concreto {
 	public static void main(String[] args) throws IOException {
 		Connection conexion = null;
@@ -28,14 +32,18 @@ public class Exemplo10_sentenzas_preparadas_posto_concreto {
 			// Establecemos a conexión
 			conexion = DriverManager.getConnection(url, user, password);
 			System.err.println("Conexion establecida");
+
 			// Construimos a orden UPDATE
 			String sql = "SELECT Nome, Salario FROM Empregados	WHERE CodDepartamento = ? AND" + " Posto = ?";
 			System.out.println(sql);
+
 			// Preparamos o PreparedStatement
 			PreparedStatement sentenza = conexion.prepareStatement(sql);
+
 			// Pasamos os valores
 			sentenza.setInt(1, Integer.parseInt(depar));
 			sentenza.setString(2, oficio);
+
 			// Preparamos el ResultSet
 			ResultSet result = sentenza.executeQuery();
 			// Percorremos as filas obtenidas

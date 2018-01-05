@@ -6,7 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /*
- * Crea unha vista (Totais) que contén cada departamento, o código, o nome, o número de empregados e a suma de salarios.
+ * Crea unha vista (Totais) que contén cada departamento, 
+ * o código, o nome, o número de empregados e a suma de salarios.
  */
 public class Exemplo10_crea_vista {
 	public static void main(String[] args) {
@@ -24,8 +25,9 @@ public class Exemplo10_crea_vista {
 			// Establecemos a conexion
 			conexion = DriverManager.getConnection(url, user, password);
 			System.err.println("CONEXIÓN ESTABLECIDA CON ÉXITO");
-			String sql = "CREATE OR REPLACE VIEW 	Totais (CodDep, NmDpar, NumEmp, TotSal) AS SELECT CodDepartamento, "
-					+ "DepNome, COUNT(CodEmpregado), SUM(salario) FROM Departamentos JOIN Empregados USING (CodDepartamento)"
+			String sql = "CREATE OR REPLACE VIEW 	Totais (CodDep, NmDpar, NumEmp, TotSal) "
+					+ "AS SELECT CodDepartamento, DepNome, COUNT(CodEmpregado), SUM(salario) "
+					+ "FROM Departamentos JOIN Empregados USING (CodDepartamento)"
 					+ "GROUP By CodDepartamento ";
 			System.out.println(sql);
 			// Creamos a sentenza

@@ -6,7 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /*
- * Exemplo que actualiza rexistros 
+ * Exemplo que actualiza rexistros da base de datos dun departamento 
+ * Sentenza non preparada
  */
 public class Exemplo09_sentenza_manipulación_datos_salario {
 
@@ -28,11 +29,12 @@ public class Exemplo09_sentenza_manipulación_datos_salario {
 			conexion = DriverManager.getConnection(url, user, password);
 			System.err.println("Conexion establecida");
 			// Construimos a sentenza UPDATE
+			// usa sentenza
 			String sql = "UPDATE Empregados SET salario = salario +" + suba + " WHERE CodDepartamento = " + codigo;
 			System.out.println(sql);
 			// Preparamos a consulta
 			Statement sentencia = conexion.createStatement();
-			// Control
+			// Control: devolve o número de filas modificadas
 			int filas = sentencia.executeUpdate(sql);
 			System.out.println("Filas modificadas: " + filas);
 			conexion.close();

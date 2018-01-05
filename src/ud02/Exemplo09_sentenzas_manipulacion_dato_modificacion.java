@@ -4,6 +4,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/*
+ * Exemplo que actualiza o salario dun departamento que se lle pasa como variable
+ * non preparada
+ */
 public class Exemplo09_sentenzas_manipulacion_dato_modificacion {
 
 	public static void main(String[] args) {
