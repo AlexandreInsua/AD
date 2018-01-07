@@ -11,6 +11,14 @@ import java.sql.SQLException;
 /*
  * O PROCEDEMENTO ESTÁ CARGADO NA BASE DE DATOS
  * Exemplo que executa o procedemento PrsubidaSal que ten dous parámetros na BD
+ * 
+ delimiter $
+CREATE PROCEDURE PrSubidaSal (cod INT, subida INT)
+BEGIN
+UPDATE Empleados SET Salario = Salario + subida WHERE
+CodDepartamento = cod;
+END $
+delimiter ;
  */
 public class Exemplo11_procedementos_almacenados_execucion {
 
@@ -25,7 +33,7 @@ public class Exemplo11_procedementos_almacenados_execucion {
 		String subida = null;
 		try {
 			// O método pode lanzar a excepción IOException
-			//	AQUÍ RECIBE OS PARÁMETROS QUE LLE VAI PASAR AO PROCEDEMENTO 
+			// AQUÍ RECIBE OS PARÁMETROS QUE LLE VAI PASAR AO PROCEDEMENTO
 			depar = IntroducirDatos("Introduza o código de departamento: ");
 			subida = IntroducirDatos("Introduce o aumento do salario: ");
 		} catch (IOException e) {
@@ -43,12 +51,13 @@ public class Exemplo11_procedementos_almacenados_execucion {
 			// Preparamos a chamada ao procedemento
 			CallableStatement chamada = conexion.prepareCall(sql);
 
-			// Damos valor aos argumentos
+			// Dámoslle valor aos argumentos
 			chamada.setInt(1, Integer.parseInt(depar));
 			chamada.setInt(2, Integer.parseInt(subida));
-			// ejecutamos el procedimiento
+			// executamos o procedemento
 			chamada.execute();
 			System.out.println("Suba de salario realizada.....");
+			
 			// liberar recursos
 			chamada.close();
 			conexion.close();

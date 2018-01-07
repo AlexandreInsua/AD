@@ -51,6 +51,8 @@ public class Exemplo11_procedementos_chamada_desde_sentenza {
 			while (result.next()) {
 				System.out.println(result.getString("Nome") + "\t" + result.getInt(2));
 			} // fin while
+			result.close();
+			pstm.close();
 			conexion.close();
 		} catch (ClassNotFoundException cnf) {
 			cnf.printStackTrace();

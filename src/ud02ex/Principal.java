@@ -94,7 +94,7 @@ public class Principal {
 		Connection conexionsql = null;
 		String user = null;
 		String password = null;
-		String url = "jdbc:sqlite:C:/Users/Alexandre/Documents/DAM/sqlite/UD02BDSQLite.db";
+		String url = "jdbc:sqlite:dbExercicioTema2/UD02BDSQLite.db";
 		String driver = "org.sqlite.JDBC";
 
 		System.out.println("INTRODUCIR DATOS SQLite");

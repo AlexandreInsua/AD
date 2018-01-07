@@ -14,6 +14,17 @@ import java.sql.Types;
  * Executamos a función FuAnhosTrabajados da base de datos.
  * A función calcula o número de anos traballados na empresa dun determinado traballador,
  * cuxo código é pasado como parámetro.
+ * 
+ * delimiter $
+CREATE FUNCTION FuAnhoTrabajo (codEmp INT) RETURNS INT
+BEGIN
+DECLARE anhos INT DEFAULT 0;
+SELECT YEAR(CURDATE()) - YEAR(FechaAlta) INTO anhos FROM empleados
+WHERE CodEmpleado = codEmp;
+RETURN anhos;
+END $
+delimiter ;
+ *  
 */
 
 public class Exemplo11_procedementos_almacenados_permisos_retorno {
@@ -53,6 +64,7 @@ public class Exemplo11_procedementos_almacenados_permisos_retorno {
 			// Preparamos a chamada ao procedemento
 				
 			chamadaFuncion = conexion.prepareCall(sql);
+			
 			// e 
 			// REXISTRAMOS QUE IMOS TER VALORES DE RETORNO
 			chamadaFuncion.registerOutParameter(1, Types.INTEGER);
@@ -68,8 +80,9 @@ public class Exemplo11_procedementos_almacenados_permisos_retorno {
 			System.out.println("O Empregado: " + auxInt + " Anos: " + anhos);
 			
 			// Otra forma de visualizar la informacion
-			System.out.println("El empregado: " + auxInt + " Años: " + chamadaFuncion.getInt(1));
+			System.out.println("O empregado: " + auxInt + " Anos: " + chamadaFuncion.getInt(1));
 			conexion.close();
+			chamadaFuncion.close();
 		} catch (ClassNotFoundException cnf) {
 			cnf.printStackTrace();
 		} catch (SQLException sqle) {
