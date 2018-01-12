@@ -24,16 +24,12 @@ public class Ejemplo02ConsultasVariasTablas {
 
 		// Consulta 2. Obtener el nombre, puesto de los empleados del departamento de
 		// Contabilidad
-		//  consulta02();
+		// consulta02();
 
 		// Consulta 3. Obtener el nombre, puesto, sueldo y comision de los empleados del
 		// departamento de Contabilidad con sueldo mayor de 3000 €
 		// consulta03();
-		
-		
-		
-		
-		
+
 		// cerrar la base de datos
 		odb.close();
 	} // fin del main
@@ -46,8 +42,9 @@ public class Ejemplo02ConsultasVariasTablas {
 		// SELECT empleNombre, emplePuesto, empleSalario, deparNombre FROM Empleado e,
 		// Departamento d WHERE e.codDepar = d.codDepar;
 		// Join interno
-		// SELECT empleNombre, emplePuesto, empleSalario, deparNombre FROM Empleado e INNER JOIN 
-		// Departamento d  ON e.codDepar = d.codDepar;
+		// SELECT empleNombre, emplePuesto, empleSalario, deparNombre FROM Empleado e
+		// INNER JOIN
+		// Departamento d ON e.codDepar = d.codDepar;
 
 		valores = odb.getValues(new ValuesCriteriaQuery(Empleado.class).field("empleNombre").field("emplePuesto")
 				.field("empleSalario2").field("departamento.deparNombre"));

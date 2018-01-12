@@ -6,20 +6,23 @@ public class Empleado {
 	private String emplePuesto;
 	private int empleSalario; 
 	private int empleComision;
-	private Departamento departamento;
+	private Oficina oficina;
+	
 	public Empleado() {
 		super();
 	}
+	
 	public Empleado(int empleCodigo, String empleNombre, String emplePuesto, int empleSalario, int empleComision,
-			Departamento departamento) {
+			Oficina oficina) {
 		super();
 		this.empleCodigo = empleCodigo;
 		this.empleNombre = empleNombre;
 		this.emplePuesto = emplePuesto;
 		this.empleSalario = empleSalario;
 		this.empleComision = empleComision;
-		this.departamento = departamento;
+		this.oficina= oficina;
 	}
+	
 	public int getEmpleCodigo() {
 		return empleCodigo;
 	}
@@ -50,11 +53,17 @@ public class Empleado {
 	public void setEmpleComision(int empleComision) {
 		this.empleComision = empleComision;
 	}
-	public Departamento getDepartamento() {
-		return departamento;
+	public Oficina getOficina() {
+		return oficina ;
 	}
-	public void setDepartamento(Departamento departamento) {
-		this.departamento = departamento;
+	public void setOficina(Oficina departamento) {
+		this.oficina = departamento;
+	}
+
+	@Override
+	public String toString() {
+		return "Empleado [empleCodigo=" + empleCodigo + ", empleNombre=" + empleNombre + ", emplePuesto=" + emplePuesto
+				+ ", empleSalario=" + empleSalario + ", empleComision=" + empleComision + ", oficina=" + oficina + "]";
 	}
 
 	

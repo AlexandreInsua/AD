@@ -47,7 +47,7 @@ public class Ejemplo01ActualizacionVariasTablas {
 
 	public static void menu() {
 		System.out.println("1.- Altas Empleados ");
-		System.out.println("2.- Listado Departamentos");
+		System.out.println("2.- Listado Oficinas");
 		System.out.println("3.- Listado Empleados");
 		System.out.println("4.- Salir ");
 		System.out.println();
@@ -70,7 +70,7 @@ public class Ejemplo01ActualizacionVariasTablas {
 		// Abrimos la base de datos, si no existe la crea
 		odb = ODBFactory.open("Empleados");
 
-		int codDepar = Integer.parseInt(introducirDatos("Código departamento. <0> para finalizar"));
+		int codDepar = Integer.parseInt(introducirDatos("Código Of. <0> para finalizar"));
 
 		while (codDepar != 0) {
 			String nbDepar = introducirDatos("Nombre Departamento:");
@@ -87,7 +87,7 @@ public class Ejemplo01ActualizacionVariasTablas {
 				empleado.setEmplePuesto(introducirDatos("Puesto empleado"));
 				empleado.setEmpleSalario(Integer.parseInt(introducirDatos("Salario ")));
 				empleado.setEmpleComision(Integer.parseInt(introducirDatos("Comisión: ")));
-				empleado.setDepartamento(departamento);
+				
 
 				// gardar
 
@@ -128,7 +128,7 @@ public class Ejemplo01ActualizacionVariasTablas {
 						empleado.setEmplePuesto(introducirDatos("Puesto empleado"));
 						empleado.setEmpleSalario(Integer.parseInt(introducirDatos("Salario ")));
 						empleado.setEmpleComision(Integer.parseInt(introducirDatos("Comisión: ")));
-						empleado.setDepartamento(departamento);
+						
 					}
 					odb.store(empleado);
 					respuesta = introducirDatos("Nuevo empleado S/N");
@@ -212,8 +212,7 @@ public class Ejemplo01ActualizacionVariasTablas {
 			Empleado empleado = empleados.next();
 			System.err.println(empleado.getEmpleCodigo() + "\t " + empleado.getEmpleNombre() + "\t"
 					+ empleado.getEmplePuesto() + "\t " + empleado.getEmpleSalario() + "\t "
-					+ empleado.getEmpleComision() + "\t " + empleado.getDepartamento().getDeparNombre() + "\t "
-					+ empleado.getDepartamento().getDeparCiudad());
+					+ empleado.getEmpleComision() );
 		}
 
 		// cerrar la base de datos
