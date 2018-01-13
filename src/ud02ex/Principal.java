@@ -202,14 +202,13 @@ public class Principal {
 		try {
 			Class.forName(driver).newInstance();
 			conexion = DriverManager.getConnection(url, user, password);
-			String sql = "INSERT INTO clientes(nombre, direccion, población, telefono, nif) VALUES ('" + nombre + "','"
+			String sql = "INSERT INTO clientes(nombre, direccion, poblacion, telefono, nif) VALUES ('" + nombre + "','"
 					+ direccion + "','" + poblacion + "','" + telefono + "','" + nif + "');";
 			System.out.println(sql);
 			Statement sentenza = conexion.createStatement();
 			sentenza.executeUpdate(sql);
 
 			conexion.close();
-			sentenza.close();
 		} catch (ClassNotFoundException cnf) {
 			cnf.printStackTrace();
 		} catch (SQLException sqle) {
@@ -244,7 +243,6 @@ public class Principal {
 			sentenza.executeUpdate(sql);
 
 			conexion.close();
-			sentenza.close();
 
 		} catch (ClassNotFoundException cnf) {
 			cnf.printStackTrace();
@@ -363,7 +361,8 @@ public class Principal {
 				listarDatosMySQL(idCliente);
 				break;
 			case "2":
-				// listarDatosSQLite();
+				idCliente = introducirDatos("Introduza o código de cliente: ");
+				listarDatosSQLite(idCliente);
 				break;
 			case "3":
 				System.out.println("Listando Apache Derby...");
@@ -381,6 +380,67 @@ public class Principal {
 				System.exit(0);
 			}
 		}
+	}
+
+	private static void listarDatosSQLite(String idCliente) {
+		Connection conexionsql = null;
+		String url = "jdbc:sqlite:C:\\Users\\Alexandre\\Documents\\WorkspaceEspace\\AccesoADatos\\dbExercicioTema2/UD02BDSQLite.db";
+		String driver = "org.sqlite.JDBC";
+
+		try {
+
+			Class.forName(driver).newInstance();
+			conexionsql = DriverManager.getConnection(url);
+			System.out.println("Conexión establecida");
+
+			String sql = "SELECT idCliente, idVenta, nombre, descripcion, cantidad, precio, cantidad*precio 'Importe' FROM (ventas INNER JOIN productos ON(idProducto = IdNumerico) ) INNER JOIN Clientes USING(idCliente) WHERE IdCliente = ? ";
+
+			PreparedStatement sentenza = conexionsql.prepareStatement(sql);
+			sentenza.setInt(1, Integer.parseInt(idCliente));
+			ResultSet resultado = sentenza.executeQuery();
+
+			while (resultado.next()) {
+				int idventa = resultado.getInt("idVenta");
+
+				String cliente = resultado.getString("nombre");
+				int cantidad = resultado.getInt("cantidad");
+				double precio = resultado.getDouble("precio");
+				double importe = resultado.getDouble("Importe");
+				String descripcion = resultado.getString("descripcion");
+
+				System.out.println("Ventas de cliente: " + cliente);
+				System.out.println("\tVentas: " + idventa);
+				System.out.println("\tProducto: " + descripcion + "\tPVP: " + precio);
+				System.out.println("\tCantidad: " + cantidad);
+				System.out.println("\tImporte: " + importe);
+			}
+
+			sql = "SELECT count(*) AS 'Ventas totales', SUM(cantidad*precio) as'Importe total' FROM (ventas INNER JOIN productos ON(idProducto = IdNumerico) ) INNER JOIN Clientes USING(idCliente) WHERE idCliente = ?";
+			sentenza = conexionsql.prepareStatement(sql);
+			sentenza.setInt(1, Integer.parseInt(idCliente));
+
+			resultado = sentenza.executeQuery();
+
+			while (resultado.next()) {
+				int ventasTotales = resultado.getInt("Ventas totales");
+				double importeTotal = resultado.getDouble("Importe total");
+
+				System.out.println("Ventas totales: " + ventasTotales);
+				System.out.println("Importe total: " + importeTotal);
+			}
+
+		} catch (ClassNotFoundException cnf) {
+			System.out.println("Clase");
+			cnf.printStackTrace();
+		} catch (SQLException sqle) {
+			System.out.println("Sql");
+			sqle.printStackTrace();
+		} catch (Exception e) {
+
+			System.out.println("exception");
+			e.printStackTrace();
+		}
+
 	}
 
 	private static void listarDatosMySQL(String IdCliente) {
@@ -424,8 +484,7 @@ public class Principal {
 			sentenza.setInt(1, Integer.parseInt(IdCliente));
 
 			resultado = sentenza.executeQuery();
-			
-			
+
 			while (resultado.next()) {
 				int ventasTotales = resultado.getInt("Ventas totales");
 				double importeTotal = resultado.getDouble("Importe total");
