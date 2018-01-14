@@ -177,6 +177,8 @@ public class Principal {
 	private static void inserirCliente(Connection conexion, String user, String password, String url, String driver)
 			throws IOException {
 
+		int idCliente = Integer.parseInt(introducirDatos("Introduza o código do cliente: "));
+		
 		String nombre = introducirDatos("Introducir o nome do cliente:");
 		if (nombre.length() > 50) {
 			nombre = nombre.substring(0, 51);
@@ -202,10 +204,17 @@ public class Principal {
 		try {
 			Class.forName(driver).newInstance();
 			conexion = DriverManager.getConnection(url, user, password);
-			String sql = "INSERT INTO clientes(nombre, direccion, poblacion, telefono, nif) VALUES ('" + nombre + "','"
-					+ direccion + "','" + poblacion + "','" + telefono + "','" + nif + "');";
+			String sql = "INSERT INTO clientes(nombre, direccion, poblacion, telefono, nif) VALUES (?, ?, ?, ?, ?, ?)";
 			System.out.println(sql);
-			Statement sentenza = conexion.createStatement();
+			
+			PreparedStatement sentenza = conexion.prepareStatement(sql);
+			sentenza.setInt(1, idCliente);
+			sentenza.setString(2, nombre);
+			sentenza.setString(3, direccion);
+			sentenza.setString(4, poblacion);
+			sentenza.setString(5, telefono);
+			sentenza.setString(6, nif);
+			
 			sentenza.executeUpdate(sql);
 
 			conexion.close();
@@ -257,6 +266,8 @@ public class Principal {
 	private static void inserirVenta(Connection conexion, String user, String password, String url, String driver)
 			throws IOException {
 
+		int codigoVenta = Integer.parseInt(introducirDatos("Introduza o código da venta"));
+		
 		String fechaVenta = introducirDatos("Introduza a data de venta (formato aaaa-mm-dd).");
 
 		int idCliente = Integer.parseInt(introducirDatos("Introduza o id do cliente:"));
@@ -271,10 +282,16 @@ public class Principal {
 		try {
 			Class.forName(driver).newInstance();
 			conexion = DriverManager.getConnection(url, user, password);
-			String sql = "INSERT INTO Ventas(fechaVenta, idCliente, idProducto, cantidad) VALUES ('" + fechaVenta
-					+ "','" + idCliente + "','" + idProducto + "','" + cantidad + "');";
+			
+			String sql = "INSERT INTO Ventas(idVenta, fechaVenta, idCliente, idProducto, cantidad) VALUES (?,?,?,?,?)";
 			System.out.println(sql);
-			Statement sentenza = conexion.createStatement();
+			
+			PreparedStatement sentenza = conexion.prepareStatement(sql);
+			sentenza.setInt(1, codigoVenta);
+			sentenza.setString(2, fechaVenta);
+			sentenza.setInt(3, idCliente);
+			sentenza.setInt(4, idProducto);
+			sentenza.setInt(5, cantidad);
 
 			sentenza.executeUpdate(sql);
 
