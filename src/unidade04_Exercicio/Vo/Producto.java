@@ -1,4 +1,4 @@
-package unidade04_Exercicio;
+package unidade04_Exercicio.Vo;
 
 public class Producto {
 
