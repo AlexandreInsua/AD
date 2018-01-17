@@ -61,7 +61,7 @@ public class Principal {
 			case "2":
 				while (!opcion.equals("0")) {
 					System.out.println("Inserir Cliente");
-					inserirCliente(conexionsql, user, password, url, driver);
+					inserirClienteMySQL(conexionsql, user, password, url, driver);
 
 					opcion = introducirDatos("Desexa introducir outro cliente?\n1.- Si\n0.- Non");
 				}
@@ -101,7 +101,7 @@ public class Principal {
 		opcion = introducirDatos(
 				"Seleccione o dato que desexa introducir.\n1.- Produtos\n2.- Clientes\n3.- Ventas\n0.- Saír");
 
-		while (!opcion.equals("0")) {
+		while (!opcion.equals("0")) {	
 			switch (opcion) {
 			case "1":
 				while (!opcion.equals("0")) {
@@ -114,7 +114,7 @@ public class Principal {
 			case "2":
 				while (!opcion.equals("0")) {
 					System.out.println("Inserir Cliente");
-					inserirCliente(conexionsql, user, password, url, driver);
+					inserirClienteSQLite(conexionsql, user, password, url, driver);
 
 					opcion = introducirDatos("Desexa introducir outro cliente?\n1.- Si\n0.- Non");
 				}
@@ -174,7 +174,59 @@ public class Principal {
 		}
 	}
 
-	private static void inserirCliente(Connection conexion, String user, String password, String url, String driver)
+	private static void inserirClienteMySQL(Connection conexion, String user, String password, String url, String driver)
+			throws IOException {
+
+				
+		String nombre = introducirDatos("Introducir o nome do cliente:");
+		if (nombre.length() > 50) {
+			nombre = nombre.substring(0, 51);
+		}
+		String direccion = introducirDatos("Introducir o enderezo do cliente: ");
+		if (direccion.length() > 50) {
+			direccion = direccion.substring(0, 51);
+		}
+		String poblacion = introducirDatos("Introducir a poboación do cliente: ");
+		if (poblacion.length() > 30) {
+			poblacion = direccion.substring(0, 31);
+		}
+		String telefono = introducirDatos("Introducir o telefono do cliente: ");
+		if (telefono.length() > 9) {
+			telefono = telefono.substring(0, 10);
+		}
+
+		String nif = introducirDatos("Introducir o nif do cliente: ");
+		if (nif.length() > 10) {
+			nif = nif.substring(0, 11);
+		}
+
+		try {
+			Class.forName(driver).newInstance();
+			conexion = DriverManager.getConnection(url, user, password);
+			String sql = "INSERT INTO clientes(nombre, direccion, poblacion, telefono, nif) VALUES (?, ?, ?, ?, ?)";
+			System.out.println(sql);
+			
+			PreparedStatement sentenza = conexion.prepareStatement(sql);
+			
+			sentenza.setString(1, nombre);
+			sentenza.setString(2, direccion);
+			sentenza.setString(3, poblacion);
+			sentenza.setString(4, telefono);
+			sentenza.setString(5, nif);
+			
+			sentenza.executeUpdate(sql);
+
+			conexion.close();
+		} catch (ClassNotFoundException cnf) {
+			cnf.printStackTrace();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private static void inserirClienteSQLite(Connection conexion, String user, String password, String url, String driver)
 			throws IOException {
 
 		int idCliente = Integer.parseInt(introducirDatos("Introduza o código do cliente: "));
@@ -204,7 +256,7 @@ public class Principal {
 		try {
 			Class.forName(driver).newInstance();
 			conexion = DriverManager.getConnection(url, user, password);
-			String sql = "INSERT INTO clientes(nombre, direccion, poblacion, telefono, nif) VALUES (?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO clientes(idCliente, nombre, direccion, poblacion, telefono, nif) VALUES (?, ?, ?, ?, ?, ?)";
 			System.out.println(sql);
 			
 			PreparedStatement sentenza = conexion.prepareStatement(sql);
