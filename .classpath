@@ -12,7 +12,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/NeoDatis OODB"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ApacheDerby"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/db40"/>
-	<classpathentry kind="lib" path="C:/Users/SegundoDAM/Documents/AccesoDatos/Librerias/Neodatis"/>
+	<classpathentry kind="lib" path="C:/Users/Alexandre/Documents/DAM/AccesoDatos/neotatis/neodatis-odb-1.9.30.689.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Neodatis"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

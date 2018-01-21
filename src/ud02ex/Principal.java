@@ -462,7 +462,7 @@ public class Principal {
 			conexionsql = DriverManager.getConnection(url);
 			System.out.println("Conexión establecida");
 
-			String sql = "SELECT idCliente, idVenta, nombre, descripcion, cantidad, precio, cantidad*precio 'Importe' FROM (ventas INNER JOIN productos ON(idProducto = IdNumerico) ) INNER JOIN Clientes USING(idCliente) WHERE IdCliente = ? ";
+			String sql = "SELECT Clientes.idCliente, idVenta, nombre, descripcion, cantidad, precio, cantidad*precio 'Importe' FROM (ventas INNER JOIN productos ON(idProducto = IdNumerico) ) INNER JOIN Clientes USING(idCliente) WHERE IdCliente = ? ";
 
 			PreparedStatement sentenza = conexionsql.prepareStatement(sql);
 			sentenza.setInt(1, Integer.parseInt(idCliente));
