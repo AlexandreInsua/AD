@@ -2,17 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/XML"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JDBC"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/SQLITE"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/DB4O"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/HDBSQLDB"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/DBO04"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Neodatis_ODB"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/NeoDatis OODB"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ApacheDerby"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/db40"/>
-	<classpathentry kind="lib" path="C:/Users/Alexandre/Documents/DAM/AccesoDatos/neotatis/neodatis-odb-1.9.30.689.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Neodatis"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/XML"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jdbc"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/db40"/>
+	<classpathentry kind="lib" path="C:/Users/SegundoDAM/Documents/AccesoDatos/Librerias/sqlite/sqlite-jdbc-3.20.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/sqlite"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
