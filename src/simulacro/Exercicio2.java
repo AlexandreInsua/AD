@@ -2,12 +2,11 @@ package simulacro;
 
 import java.sql.*;
 
-public class Exercicio {
+public class Exercicio2 {
 
 	public static void main(String[] args) {
 		Connection conexion = null;
-	String url = "jdbc:hsqldb:file:"
-			+ "C:\\Users\\Alexandre\\Desktop\\numeros\\numeros, \"SA\", \"SA\""; 
+	String url = "jdbc:hsqldb:file:C:\\Users\\Alexandre\\Documents\\WorkspaceEspace\\AccesoADatos\\HSQLDB\\coches, \"SA\", \"SA\""; 
 
 		try {
 			Class.forName("org.hsqldb.jdbcDriver").newInstance();
@@ -16,7 +15,7 @@ public class Exercicio {
 					
 					Statement stm = conexion.createStatement();
 			
-			ResultSet result = stm.executeQuery("Select * from numero");
+			ResultSet result = stm.executeQuery("Select * from cliente");
 			
 			while (result.next()){
 				System.out.println(result.getInt(1));
