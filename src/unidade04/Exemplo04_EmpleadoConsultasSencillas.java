@@ -15,19 +15,7 @@ public class Exemplo04_EmpleadoConsultasSencillas {
 
 	public static void main(String[] args) {
 		String opcion;
-		/*
-		 * do { System.out.println("1.- Listado todos los empleados");
-		 * System.out.println("2.- Listado Empleados de Bilbao"); System.out.
-		 * println("3.- Listado Empleados de Vigo ordenados por sueldo y nombre");
-		 * System.out.println("4.- Salir"); opcion =
-		 * introducirDatos("Introduce una opcion: "); try { switch
-		 * (Integer.parseInt(opcion)) { case 1: listadoEmpleados(); break; case 2:
-		 * listadoPrimerEmpleadoBilbao(); break; case 3: listadoEmpleadosVigoOrdenado();
-		 * break; case 4: System.exit(0); default: System.out.println("Opcion erronea");
-		 * } } catch (NumberFormatException e) {
-		 * System.out.println("La opcion tiene que ser un 	numero"); } } while
-		 * (!opcion.equals("4"));
-		 */
+		
 
 		listarEmpleadosPrincipioNombreNo();
 

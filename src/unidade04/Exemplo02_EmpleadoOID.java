@@ -17,7 +17,7 @@ public class Exemplo02_EmpleadoOID {
 		ODB odb = ODBFactory.open("neodatis.test");
 		// Obter o obxecto coa clase OID
 		// Neste caso tomaremos o obxecto cuxo OID é 3
-		OID oid = OIDFactory.buildObjectOID(3);
+		OID oid = OIDFactory.buildObjectOID(13);
 		// Recuperamos un obxecto Empleado cuxo OID pedimos anteiormente
 		Empleado empleado = (Empleado) odb.getObjectFromId(oid);
 		visualizarResultados(empleado);
