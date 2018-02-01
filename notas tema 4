@@ -1,0 +1,117 @@
+UNIDADE 4. BD OO
+
+BDOO
+Orientadas a obxectos, almacenan método e datos. Simplifican a programación empregando as mesmas estruturas que as linguaxes POO.
+
+Características
+- Almacenan obxectos
+- Cada obxecto ten un identificador único, non modificable polo usuario.
+- Cada obxecto define métodos, atributos e interfaces.
+- Cumpre con: persistencia, concorrencia, recuperación de datos, almacenamento secundario e facilidade de consulta, encapsulación, identidade, herdanza e polimorfismo.
+
+O ESTÁNDAR ODMG
+Entándar de fabricantes.
+Tipos de obxectos, obxectos atómicos, estruturados, coleccións, literiais, atómicos, estruturais, coleccións, null
+
+LINGUAS DE CONSULTA OQL
+Entándar para consultar basado en SQL. Operadores IN e LIKE. Cuantificadores FOR ALL, EXIST, IN, UNIQUE, SOME ANY. Para acceder a atributos e obxetos úsase a nomenclatura do punto obxecto.atributo, ou obxecto.obxectoAtributo.atributo.
+
+EXEMPLO DE BBOO
+Neodatis, bd de open source.
+
+ABRIR A BASE DE DATOS
+	Método open(); da clase ODBFactory
+
+ALMACENAR OBXECTOS
+	db.store(obxecto);
+
+RECUPERAR OBXECTOS
+	Object<Clase> obxecto = db.getObject(Clase.class);
+
+VALIDAR DATOS / PECHAR BD
+	db.close();
+
+ACCEDER ASO OBXECTOS COÑECENDO O OID
+	Método OIC oid buildObject() de OIDFactory
+	Clase instancia = (Clase) db.getObjectFromId(oid)
+
+RECUPERAR O OID DUN OBXECTO
+	OID oid = db.getObectID(intancia)
+
+EXPLORADOR DE NEODATIS
+	Ficheiro explorer.bat. Non se debe usar unha base co explorado e co programa Java ao mesmo tempo.
+
+CONSULTAS SINXELAS
+	Úsase a clase CriteriaQuery onde se especifican a clase e os criterios de consulta
+	Pasos:
+		1. Abrir a base de datos
+			ODB odb = ODBFactory.open("baseDatos");
+		2. Créase a consulta coa interface IQuery
+			IQuery query = new CriteriaQuery(Clase.class);
+		3. Recuperar os resultados coa interface Objects
+			Objects <Clase> instancias = odb.getOjects(query);
+		4. Mostrar os resultados
+			o primeiro dos resultados
+			Objects <Clase> instancias = odb.getOjects(query).getFirst();
+			ordenar asdentede ou descendente
+			Objects <Clase> instancias = odb.getOjects(query).orderByAsc();
+			Objects <Clase> instancias = odb.getOjects(query).orderByDes;
+
+CONSULTAR USANDO CRITERIOS
+Hai dúas formas
+	1º Pasándolle os criterios á query
+		IQuery quety = new CriteriaQuery(Clase.clase, criterio);
+	2º Coa interface Criterion
+		ICriterion criterion = expresion o criterio
+		IQuery quety = new CriteriaQuery(Clase.clase, criterion);
+
+EXPRESIÓNS LÓXICAS
+	And, or, not son obxectos que engaden o criterio con add():
+		criterio = new And().add(criterio 1).add(criterio 2) ... ;
+
+CONSULTA DE ACTUALIZACIÓN
+	Modificar un obxecto
+		Recupérase en memoria, modifícase con setters e gardase con store();
+
+	Eliminar un obxecto
+		Recupérase en memoria, e eliminase con delete().
+
+CONSULTAS MÁIS COMPLEXAS
+	Para as consultas de agrupación e de varios campos úsase a interface ValuesCriteriaQuery:
+		field()	 								recupera o valor dun atributo
+		sum(), max(), min(), avg(), count() 	o valor da función na consulta de agrupación
+
+	Recupéranse os atributos coa interface Values e o método getValues de odb(aproxímase a una matriz de valores)
+
+	Mediante os métodos getByAlias("alias")  ou getByIndex(index) podemos obter os valores dos atributos. O alias establécese como segundo parámetro no método field("nome do atributo", "alias") ou non se establece, pódese tomar o nome do campo
+
+	As funcións traballan con datos de tipo BigDecimas e BigInteger.
+
+CONSULTAS UTILIZANDO CRITERIO
+	Métodos da interface ICriterion para usar coa clase CriteriaQuery
+	equal		=
+	like 		Comodins %  e _
+	gt 			>
+	ge 			>=
+	lt 			<
+	le 			<=
+	contain		contén
+	isNull		é nulo
+	isNotNull	non é nulo
+	sizeEq		tamaño igual a 
+	sizeGt		tamaño maior que
+	sizeGe		tamaño maior ou igual que
+	sizeLt		tamaño menor que
+	sizeLe		tamaño menor ou igual que
+
+	new Or()	ou
+	new And()	e
+	new Not()	negación
+
+CONSULTAS DE OBXECTOS RELACIONADOS
+	Para accedar ao vlaor un atributo que é un obxecto úsase a nomenclatura do punto:
+		Values valores = odb.getValues(new ValuesCriteriaQuery(Clase.class).field("ObxectoAtributo").field("atributo do segundo obxecto"));
+
+MODO CLIENTE/SERVIDOR DA BASE DE DATO
+	Pódese usar Neodatis en modo cliente servidor. Para isto inicialízase o servidor, asígnaselle un porto , a base de datos. Créase un cliente.
+	As clases deben implementar a interface Serializable.
